@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\RoboGraph.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{FE8409A3-5C63-4966-A1E8-51BA635394CF}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\RoboGraph.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\RoboGraphEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{7F4B93B9-66A4-439C-821E-934AD17C05D5}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\RoboGraph">
+      <UniqueIdentifier>{629A0784-3DA8-487C-B69B-CBDAFDC47B7A}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\RoboGraph\RoboGraph.Build.cs">
+      <Filter>Source\RoboGraph</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\RoboGraph\RoboGraph.cpp">
+      <Filter>Source\RoboGraph</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\RoboGraph\RoboGraph.h">
+      <Filter>Source\RoboGraph</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\RoboGraph\RoboGraphCharacter.cpp">
+      <Filter>Source\RoboGraph</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\RoboGraph\RoboGraphCharacter.h">
+      <Filter>Source\RoboGraph</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\RoboGraph\RoboGraphGameMode.cpp">
+      <Filter>Source\RoboGraph</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\RoboGraph\RoboGraphGameMode.h">
+      <Filter>Source\RoboGraph</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source\RoboGraph\GraphCore">
+      <UniqueIdentifier>{f0075e65-e9f3-4cb2-8c10-e3230411ef5d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\RoboGraph\GraphCore\RGGraphVertex.cpp">
+      <Filter>Source\RoboGraph\GraphCore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\RoboGraph\GraphCore\RGAdjacencyMatrix.cpp">
+      <Filter>Source\RoboGraph\GraphCore</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\RoboGraph\GraphCore\RGGraphVertex.h">
+      <Filter>Source\RoboGraph\GraphCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\RoboGraph\GraphCore\RGAdjacencyMatrix.h">
+      <Filter>Source\RoboGraph\GraphCore</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,27 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.Cpp.props(31,3): warning MSB4011: "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.Makefile.props" cannot be imported again. It was already imported at "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.cpp.props (31,3)". This is most likely a build authoring error. This subsequent import will be ignored. [D:\Projects\RoboGraph\RoboGraph\Intermediate\ProjectFiles\RoboGraph.vcxproj]
+  Using 'git status' to determine working set for adaptive non-unity build.
+  Distributing 4 actions to XGE
+  --------------------Build System Warning---------------------------------------
+  Temporary license has expired:
+      Your Agent's temporary license has expired. IncrediBuild will allow you to utilize up to 4 cores on your local machine.
+       To unleash IncrediBuild's capabilities to utilize idle cores in your network in order to achieve increased performance, please contact sales@incredibuild.com
+  
+  -------------------------------------------------------------------------------
+  --------------------Project: Default-------------------------------------------
+  RGAdjacencyMatrix.cpp (0:00.78 at +0:00)
+  RoboGraphCharacter.cpp (0:01.15 at +0:00)
+  UE4Editor-RoboGraph-Win64-DebugGame.lib (0:00.17 at +0:01)
+     Creating library D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\DebugGame\UE4Editor-RoboGraph-Win64-DebugGame.lib and object D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\DebugGame\UE4Editor-RoboGraph-Win64-DebugGame.exp
+  UE4Editor-RoboGraph-Win64-DebugGame.dll (0:00.73 at +0:01)
+     Creating library D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\DebugGame\UE4Editor-RoboGraph-Win64-DebugGame.suppressed.lib and object D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\DebugGame\UE4Editor-RoboGraph-Win64-DebugGame.suppressed.exp
+  ---------------------- Done ----------------------
+   
+      Rebuild All: 1 succeeded, 0 failed, 0 skipped
+   
+  1 build system warning(s):
+     - Temporary license has expired
+   
+  
+  
+  Deploying RoboGraphEditor Win64 DebugGame...
+  Total build time: 5.65 seconds (XGE executor: 3.21 seconds)

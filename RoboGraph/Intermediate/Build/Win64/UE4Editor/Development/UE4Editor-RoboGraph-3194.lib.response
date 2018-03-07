@@ -1,0 +1,19 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-RoboGraph-3194.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\Development\RoboGraph\RoboGraph.cpp.obj"
+"D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\Development\RoboGraph\RoboGraphCharacter.cpp.obj"
+"D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\Development\RoboGraph\RoboGraphGameMode.cpp.obj"
+"D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\Development\RoboGraph\RGGraphVertex.cpp.obj"
+"D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\Development\RoboGraph\RoboGraph.init.gen.cpp.obj"
+"D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\Development\RoboGraph\RoboGraphCharacter.gen.cpp.obj"
+"D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\Development\RoboGraph\RoboGraphGameMode.gen.cpp.obj"
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\RoboGraph\PCLaunch.rc.res"
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+/OUT:"D:\Projects\RoboGraph\RoboGraph\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-RoboGraph-3194.lib"
