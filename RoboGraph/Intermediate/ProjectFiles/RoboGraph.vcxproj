@@ -570,10 +570,12 @@
     <None Include="..\..\Source\RoboGraph\RoboGraph.Build.cs" />
     <ClCompile Include="..\..\Source\RoboGraph\GraphCore\RGAdjacencyMatrix.cpp" />
     <ClCompile Include="..\..\Source\RoboGraph\GraphCore\RGGraph.cpp" />
+    <ClCompile Include="..\..\Source\RoboGraph\GraphCore\RGGraphTestCase.cpp" />
     <ClCompile Include="..\..\Source\RoboGraph\GraphCore\RGGraphVertex.cpp" />
     <ClCompile Include="..\..\Source\RoboGraph\RoboGraph.cpp" />
     <ClInclude Include="..\..\Source\RoboGraph\GraphCore\RGAdjacencyMatrix.h" />
     <ClInclude Include="..\..\Source\RoboGraph\GraphCore\RGGraph.h" />
+    <ClInclude Include="..\..\Source\RoboGraph\GraphCore\RGGraphTestCase.h" />
     <ClInclude Include="..\..\Source\RoboGraph\GraphCore\RGGraphVertex.h" />
     <ClInclude Include="..\..\Source\RoboGraph\RoboGraph.h" />
     <ClCompile Include="..\..\Source\RoboGraph\RoboGraphCharacter.cpp" />

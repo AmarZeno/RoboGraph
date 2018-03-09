@@ -15,7 +15,7 @@ namespace RGGraphCore
 
 	// Member Variables
 	public:
-		int32 Index;
+		int Index;
 
 	private:
 		T Data;

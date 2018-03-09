@@ -1,5 +1,29 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.Cpp.props(31,3): warning MSB4011: "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.Makefile.props" cannot be imported again. It was already imported at "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.cpp.props (31,3)". This is most likely a build authoring error. This subsequent import will be ignored. [D:\Projects\RoboGraph\RoboGraph\Intermediate\ProjectFiles\RoboGraph.vcxproj]
   Using 'git status' to determine working set for adaptive non-unity build.
-  Target is up to date
-  Deploying RoboGraphEditor Win64 DebugGame...
-  Total build time: 2.43 seconds (NoActionsToExecute executor: 0.00 seconds)
+  Distributing 4 actions to XGE
+  --------------------Build System Warning---------------------------------------
+  Temporary license has expired:
+      Your Agent's temporary license has expired. IncrediBuild will allow you to utilize up to 4 cores on your local machine.
+       To unleash IncrediBuild's capabilities to utilize idle cores in your network in order to achieve increased performance, please contact sales@incredibuild.com
+  
+  -------------------------------------------------------------------------------
+  --------------------Project: Default-------------------------------------------
+  RGGraph.cpp (0:00.48 at +0:00)
+d:\projects\robograph\robograph\source\robograph\graphcore\RGGraph.h(43): error C2143: syntax error: missing ';' before '<'
+  d:\projects\robograph\robograph\source\robograph\graphcore\RGGraph.h(45): note: see reference to class template instantiation 'RGGraphCore::RGGraph<T>' being compiled
+d:\projects\robograph\robograph\source\robograph\graphcore\RGGraph.h(43): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\projects\robograph\robograph\source\robograph\graphcore\RGGraph.h(43): error C2238: unexpected token(s) preceding ';'
+  
+  Error executing C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\amd64\cl.exe (tool returned code: 2)
+  ---------------------- Done ----------------------
+   
+      Rebuild All: 0 succeeded, 1 failed, 0 skipped
+   
+  1 build system warning(s):
+     - Temporary license has expired
+   
+  
+  
+ERROR : UBT error : Failed to produce item: D:\Projects\RoboGraph\RoboGraph\Binaries\Win64\UE4Editor-RoboGraph-Win64-DebugGame.pdb
+  Total build time: 3.09 seconds (XGE executor: 0.00 seconds)
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.MakeFile.Targets(41,5): error MSB3075: The command ""C:\Program Files\Epic Games\UE_4.18\Engine\Build\BatchFiles\Build.bat" RoboGraphEditor Win64 DebugGame "D:\Projects\RoboGraph\RoboGraph\RoboGraph.uproject" -waitmutex" exited with code 5. Please verify that you have sufficient rights to run this command.

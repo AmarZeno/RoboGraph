@@ -11,6 +11,8 @@ class ARoboGraphGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
+	virtual void StartPlay() override;
+
 public:
 	ARoboGraphGameMode();
 };

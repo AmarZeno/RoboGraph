@@ -4,6 +4,16 @@
 #include "RoboGraphCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
+#include "GraphCore/RGGraphTestCase.h"
+
+void ARoboGraphGameMode::StartPlay()
+{
+	Super::StartPlay();
+
+	RGGraphCore::RGGraphTestCase* GraphTest = new RGGraphCore::RGGraphTestCase();
+	GraphTest->Test();
+}
+
 ARoboGraphGameMode::ARoboGraphGameMode()
 {
 	// set default pawn class to our Blueprinted character
