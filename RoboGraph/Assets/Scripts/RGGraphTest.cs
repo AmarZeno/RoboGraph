@@ -11,7 +11,8 @@ namespace RGGraphCore
             //  TestDirectedGraph();
             //  TestTree();
             //  TestBFS();
-            TestDFS();
+            //  TestDFS();
+            TestPuzzle();
         }
 
         void TestDirectedGraph()
@@ -176,6 +177,33 @@ namespace RGGraphCore
             }
 
             Debug.Log("End BFS test");
+        }
+
+        void TestPuzzle()
+        {
+            Debug.Log("Begin puzzle solver");
+
+            string state = PuzzleSolver.GenerateRandomSolvableState();
+            Debug.Log("Solving " + PuzzleSolver.PrintableState(state));
+            System.Diagnostics.Debug.WriteLine("Solving " + PuzzleSolver.PrintableState(state));
+
+            System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
+            List<string> path = PuzzleSolver.DepthFirstSearch(state);
+            stopWatch.Stop();
+
+            Debug.Log("Depth first search took " + stopWatch.ElapsedMilliseconds + " ms");
+            Debug.Log("Depth first search path contains " + path.Count + " states");
+
+            stopWatch.Reset();
+            stopWatch.Start();
+            path = PuzzleSolver.BreadthFirstSearch(state);
+            stopWatch.Stop();
+
+            Debug.Log("Breadth first search took " + stopWatch.ElapsedMilliseconds + " ms");
+            Debug.Log("Breadth first search path contains " + path.Count + " states");
+
+            Debug.Log("End puzzle solver");
         }
     }
 }
