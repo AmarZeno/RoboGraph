@@ -10,7 +10,8 @@ namespace RGGraphCore
         {
             //  TestDirectedGraph();
             //  TestTree();
-            TestBFS();
+            //  TestBFS();
+            TestDFS();
         }
 
         void TestDirectedGraph()
@@ -105,6 +106,8 @@ namespace RGGraphCore
 
             Debug.Log(graphData);
 
+            RGSearchAlgorithms.BreadthFirstSearch<string>(graph, V4);
+
             List<RGVertex<string>> fromV6 = RGSearchAlgorithms.GetPathToSource<string>(V6);
             Debug.Log("Start vertex : V6");
             foreach(RGVertex<string> vertex in fromV6)
@@ -113,6 +116,59 @@ namespace RGGraphCore
             }
 
             List<RGVertex<string>> path = RGSearchAlgorithms.BreadthFirstSearchWithGoal<string>(graph, V6, V3);
+            Debug.Log("Path from v3 to v6");
+            foreach (RGVertex<string> vertex in path)
+            {
+                Debug.Log(vertex);
+            }
+
+            Debug.Log("End BFS test");
+        }
+
+        void TestDFS()
+        {
+            Debug.Log("Begin BFS test");
+
+            RGVertex<string> V1 = new RGVertex<string>("V1");
+            RGVertex<string> V2 = new RGVertex<string>("V2");
+            RGVertex<string> V3 = new RGVertex<string>("V3");
+            RGVertex<string> V4 = new RGVertex<string>("V4");
+            RGVertex<string> V5 = new RGVertex<string>("V5");
+            RGVertex<string> V6 = new RGVertex<string>("V6");
+            RGVertex<string> V7 = new RGVertex<string>("V7");
+
+            List<RGVertex<string>> vertices = new List<RGVertex<string>>
+            {
+                V1, V2, V3, V4, V5, V6, V7
+            };
+
+            RGGraph<string> graph = new RGGraph<string>(vertices);
+
+            graph.CreateUnDirectedEdge(V4, V5);
+            graph.CreateUnDirectedEdge(V4, V2);
+            graph.CreateUnDirectedEdge(V4, V1);
+            graph.CreateUnDirectedEdge(V5, V6);
+            graph.CreateUnDirectedEdge(V2, V5);
+            graph.CreateUnDirectedEdge(V2, V7);
+            graph.CreateUnDirectedEdge(V2, V1);
+            graph.CreateUnDirectedEdge(V1, V3);
+            graph.CreateUnDirectedEdge(V1, V7);
+            graph.CreateUnDirectedEdge(V7, V6);
+
+            string graphData = graph.ToString();
+
+            Debug.Log(graphData);
+
+            RGSearchAlgorithms.DepthFirstSearch<string>(graph, V4);
+
+            List<RGVertex<string>> fromV6 = RGSearchAlgorithms.GetPathToSource<string>(V6);
+            Debug.Log("Start vertex : V6");
+            foreach (RGVertex<string> vertex in fromV6)
+            {
+                Debug.Log(vertex);
+            }
+
+            List<RGVertex<string>> path = RGSearchAlgorithms.DepthFirstSearchWithGoal<string>(graph, V6, V3);
             Debug.Log("Path from v3 to v6");
             foreach (RGVertex<string> vertex in path)
             {
