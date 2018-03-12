@@ -402,6 +402,18 @@ namespace RGGraphCore
             }
             return null;
         }
+
+        public static List<RGGrid.Point> GeneratePath(Dictionary<RGGrid.Point, RGGrid.Point> parentMap, RGGrid.Point endState)
+        {
+            List<RGGrid.Point> path = new List<RGGrid.Point>();
+            RGGrid.Point parent = endState;
+            while (parent != null && parentMap.ContainsKey(parent))
+            {
+                path.Add(parent);
+                parent = parentMap[parent];
+            }
+            return path;
+        }
     }
 }
 
