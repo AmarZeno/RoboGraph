@@ -13,6 +13,13 @@ public class RGRandomGraph : MonoBehaviour {
     private const int MINEDGECOUNT = 0;
     private const int MAXEDGECOUNT = 4;
 
+    public void CleanUp()
+    {
+        vertices.Clear();
+        vertices = null;
+        graph = null;
+    }
+
     public void GenerateNodes(int nodeCount)
     {
         vertices = new List<RGVertex<string>>();
@@ -39,6 +46,23 @@ public class RGRandomGraph : MonoBehaviour {
                 RGVertex<string> randomVertex = GetRandomVertex();
                 int randomEdgeCost = Random.Range(MINEDGECOST, MAXEDGECOST + 1);
                 graph.CreateDirectedEdge(vertices[i], randomVertex, randomEdgeCost);
+            }
+        }
+    }
+
+    public void ApplyUnDirectedEdge()
+    {
+        graph = new RGGraph<string>(vertices);
+
+        int noOfVertices = vertices.Count;
+        for (int i = 0; i < noOfVertices; i++)
+        {
+            int randomEdgeCount = Random.Range(MINEDGECOUNT, MAXEDGECOUNT + 1);
+            for (int j = 1; j <= randomEdgeCount; j++)
+            {
+                RGVertex<string> randomVertex = GetRandomVertex();
+                int randomEdgeCost = Random.Range(MINEDGECOST, MAXEDGECOST + 1);
+                graph.CreateUnDirectedEdge(vertices[i], randomVertex, randomEdgeCost);
             }
         }
     }

@@ -1,0 +1,105 @@
+Random Graph Medium Size
+Graph:
+V0
+	Edge to: V0(w=2) V24(w=1) V26(w=2) 
+V1
+	Edge to: V44(w=2) V49(w=1) 
+V2
+	Edge to: V3(w=1) 
+V3
+	Edge to: V24(w=1) V26(w=1) 
+V4
+	No outgoing edges
+V5
+	Edge to: V8(w=2) V30(w=1) V39(w=2) V47(w=1) 
+V6
+	Edge to: V27(w=2) V30(w=1) V47(w=1) 
+V7
+	Edge to: V3(w=1) V11(w=2) V18(w=2) V49(w=1) 
+V8
+	Edge to: V1(w=1) V3(w=1) V40(w=2) 
+V9
+	Edge to: V20(w=2) V41(w=1) V49(w=2) 
+V10
+	Edge to: V3(w=2) V6(w=1) V16(w=1) V43(w=2) 
+V11
+	Edge to: V11(w=2) V29(w=2) V36(w=1) V42(w=2) 
+V12
+	Edge to: V2(w=1) V12(w=2) 
+V13
+	Edge to: V15(w=2) V19(w=1) V33(w=2) 
+V14
+	Edge to: V2(w=2) V23(w=1) V35(w=1) V39(w=1) 
+V15
+	Edge to: V20(w=2) 
+V16
+	No outgoing edges
+V17
+	Edge to: V5(w=2) V27(w=2) V36(w=2) 
+V18
+	Edge to: V13(w=1) V43(w=2) 
+V19
+	Edge to: V12(w=2) V19(w=2) V47(w=1) 
+V20
+	Edge to: V47(w=1) 
+V21
+	No outgoing edges
+V22
+	No outgoing edges
+V23
+	Edge to: V30(w=2) V31(w=2) V33(w=1) 
+V24
+	Edge to: V18(w=2) V34(w=2) V47(w=2) 
+V25
+	Edge to: V0(w=1) V30(w=2) V31(w=2) 
+V26
+	Edge to: V28(w=1) V42(w=2) V46(w=1) 
+V27
+	Edge to: V6(w=1) V14(w=2) 
+V28
+	Edge to: V41(w=1) 
+V29
+	Edge to: V18(w=1) V25(w=2) 
+V30
+	Edge to: V29(w=2) V44(w=2) 
+V31
+	Edge to: V29(w=2) V41(w=1) 
+V32
+	No outgoing edges
+V33
+	No outgoing edges
+V34
+	Edge to: V15(w=2) V36(w=2) V38(w=2) V39(w=1) 
+V35
+	Edge to: V5(w=1) V12(w=2) 
+V36
+	No outgoing edges
+V37
+	Edge to: V3(w=2) V43(w=2) 
+V38
+	Edge to: V7(w=2) V35(w=1) 
+V39
+	Edge to: V2(w=2) V6(w=1) V12(w=1) V45(w=2) 
+V40
+	Edge to: V46(w=2) 
+V41
+	No outgoing edges
+V42
+	Edge to: V21(w=2) V40(w=1) 
+V43
+	Edge to: V35(w=2) 
+V44
+	No outgoing edges
+V45
+	Edge to: V28(w=2) V31(w=2) V36(w=1) V49(w=2) 
+V46
+	No outgoing edges
+V47
+	Edge to: V7(w=1) V13(w=2) 
+V48
+	No outgoing edges
+V49
+	Edge to: V3(w=2) V19(w=1) V40(w=2) V42(w=2) 
+
+
+

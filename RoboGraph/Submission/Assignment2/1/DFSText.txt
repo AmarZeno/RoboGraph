@@ -1,0 +1,24 @@
+Begin DFS test
+Graph:
+V1
+	Edge to: V2(w=1) V3(w=1) V4(w=1) V7(w=1) 
+V2
+	Edge to: V1(w=1) V4(w=1) V5(w=1) V7(w=1) 
+V3
+	Edge to: V1(w=1) 
+V4
+	Edge to: V1(w=1) V2(w=1) V5(w=1) 
+V5
+	Edge to: V2(w=1) V4(w=1) V6(w=1) 
+V6
+	Edge to: V5(w=1) V7(w=1) 
+V7
+	Edge to: V1(w=1) V2(w=1) V6(w=1) 
+
+Running DFS from:{Vertex}V4
+Start vertex : V6
+{Vertex}V6{Vertex}V5{Vertex}V4
+Path from v3 to v6
+{Vertex}V3{Vertex}V1{Vertex}V7{Vertex}V6
+End DFS test
+

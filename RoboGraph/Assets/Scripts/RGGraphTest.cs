@@ -12,7 +12,9 @@ namespace RGGraphCore
         public TextAsset BFSFile;
         public TextAsset DFSFile;
         public TextAsset RandomGeneratorFile;
-        public TextAsset RandomGeneratorGraphFile;
+        public TextAsset SmallRandomGeneratorGraphFile;
+        public TextAsset MedRandomGeneratorGraphFile;
+        public TextAsset LargeRandomGeneratorGraphFile;
 
         private Debugging debugClass;
         void Start()
@@ -245,23 +247,39 @@ namespace RGGraphCore
 
         void TestRandomGeneratorWithVertexAndEdges()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Begin random generator graph").AppendLine();
+            Debug.Log("Begin random generator graph");
 
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("Random Graph Min Size").AppendLine();
             RGRandomGraph randomGraph = new RGRandomGraph();
 
-            const int NoOfNodesToGenerate = 10;
+            int NoOfNodesToGenerate = 10;
             randomGraph.GenerateNodes(NoOfNodesToGenerate);
             randomGraph.ApplyDirectedEdge();
-
             string graphData = randomGraph.ToString();
+            sb.Append(graphData).AppendLine().AppendLine();
+            debugClass.WriteStringToFile(SmallRandomGeneratorGraphFile, sb.ToString());
 
-            sb.Append(graphData).AppendLine();
+            sb.Length = 0;
+            sb.Append("Random Graph Medium Size").AppendLine();
+            NoOfNodesToGenerate = 50;
+            randomGraph.GenerateNodes(NoOfNodesToGenerate);
+            randomGraph.ApplyDirectedEdge();
+            graphData = randomGraph.ToString();
+            sb.Append(graphData).AppendLine().AppendLine();
+            debugClass.WriteStringToFile(MedRandomGeneratorGraphFile, sb.ToString());
 
+            sb.Length = 0;
+            sb.Append("Random Graph Medium Size").AppendLine();
+            NoOfNodesToGenerate = 16000;
+            randomGraph.GenerateNodes(NoOfNodesToGenerate);
+            randomGraph.ApplyDirectedEdge();
+            graphData = randomGraph.ToString();
+            sb.Append(graphData).AppendLine().AppendLine();
+            debugClass.WriteStringToFile(LargeRandomGeneratorGraphFile, sb.ToString());
 
-            sb.Append("End random generator graph").AppendLine();
-
-            debugClass.WriteStringToFile(RandomGeneratorGraphFile, sb.ToString());
+            Debug.Log("End random generator graph");
         }
     }
 }

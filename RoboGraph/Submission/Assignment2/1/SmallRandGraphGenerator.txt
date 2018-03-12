@@ -1,0 +1,25 @@
+Random Graph Min Size
+Graph:
+V0
+	Edge to: V3(w=2) V5(w=1) 
+V1
+	Edge to: V0(w=2) 
+V2
+	Edge to: V1(w=1) V7(w=2) 
+V3
+	No outgoing edges
+V4
+	Edge to: V1(w=2) 
+V5
+	Edge to: V3(w=1) V5(w=2) V8(w=2) V9(w=1) 
+V6
+	Edge to: V1(w=1) V4(w=2) V5(w=2) 
+V7
+	Edge to: V0(w=1) V2(w=2) V4(w=1) V9(w=1) 
+V8
+	Edge to: V0(w=2) V4(w=2) V6(w=1) V7(w=1) 
+V9
+	Edge to: V0(w=1) V3(w=1) V5(w=1) V7(w=1) 
+
+
+
