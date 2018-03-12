@@ -1,23 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace RGGraphCore
 {
     public class RGGraphTest : MonoBehaviour
     {
+        public TextAsset DirectedGraphFile;
+        public TextAsset TreeFile;
+        public TextAsset BFSFile;
+        public TextAsset DFSFile;
+        public TextAsset RandomGeneratorFile;
+
+        private Debugging debugClass;
         void Start()
         {
-            //  TestDirectedGraph();
-            //  TestTree();
-            //  TestBFS();
-            //  TestDFS();
-            TestPuzzle();
+            debugClass = this.gameObject.GetComponent<Debugging>();
+
+            TestDirectedGraph();
+            TestTree();
+            TestBFS();
+            TestDFS();
+            TestRandomGenerator();
         }
 
         void TestDirectedGraph()
         {
-            Debug.Log("Begin Testing Directed Graph");
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Begin Testing Directed Graph").AppendLine();
 
             RGVertex<string> V1 = new RGVertex<string>("v1");
             RGVertex<string> V2 = new RGVertex<string>("v2");
@@ -35,15 +46,17 @@ namespace RGGraphCore
             graph.CreateDirectedEdge(V2, V3, 1);
             graph.CreateDirectedEdge(V2, V4, -5);
 
-            string test = graph.ToString();
-            Debug.Log(graph.ToString());
+            sb.Append(graph.ToString()).AppendLine();
 
-            Debug.Log("End of Testing Directed Graph");
+            sb.Append("End of Testing Directed Graph").AppendLine();
+
+            debugClass.WriteStringToFile(DirectedGraphFile, sb.ToString());
         }
 
         void TestTree()
         {
-            Debug.Log("Begin Testing Tree");
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Begin Testing Tree").AppendLine();
 
             RGTreeNode<string> root = new RGTreeNode<string>("Root");
             RGTreeNode<string> node1 = new RGTreeNode<string>("L1");
@@ -68,14 +81,16 @@ namespace RGGraphCore
 
             string tree = root.SubTreeToString();
 
-            Debug.Log("Tree values are " + tree);
+            sb.Append("Tree values are ").Append(tree).AppendLine();
+            sb.Append("End Testing Tree").AppendLine();
 
-            Debug.Log("End Testing Tree");
+            debugClass.WriteStringToFile(TreeFile, sb.ToString());
         }
 
         void TestBFS()
         {
-            Debug.Log("Begin BFS test");
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Begin BFS test").AppendLine();
 
             RGVertex<string> V1 = new RGVertex<string>("V1");
             RGVertex<string> V2 = new RGVertex<string>("V2");
@@ -105,30 +120,37 @@ namespace RGGraphCore
 
             string graphData = graph.ToString();
 
-            Debug.Log(graphData);
+            sb.Append(graphData).AppendLine();
 
+            sb.Append("Running BFS from : ").Append(V4.ToString()).AppendLine();
             RGSearchAlgorithms.BreadthFirstSearch<string>(graph, V4);
 
             List<RGVertex<string>> fromV6 = RGSearchAlgorithms.GetPathToSource<string>(V6);
-            Debug.Log("Start vertex : V6");
-            foreach(RGVertex<string> vertex in fromV6)
+            sb.Append("Start vertex : V6").AppendLine();
+            foreach (RGVertex<string> vertex in fromV6)
             {
-                Debug.Log(vertex);
+                sb.Append(vertex.ToString());
             }
+
+            sb.AppendLine();
 
             List<RGVertex<string>> path = RGSearchAlgorithms.BreadthFirstSearchWithGoal<string>(graph, V6, V3);
-            Debug.Log("Path from v3 to v6");
+            sb.Append("Path from v3 to v6").AppendLine();
             foreach (RGVertex<string> vertex in path)
             {
-                Debug.Log(vertex);
+                sb.Append(vertex.ToString());
             }
 
-            Debug.Log("End BFS test");
+            sb.AppendLine();
+            sb.Append("End BFS test").AppendLine();
+
+            debugClass.WriteStringToFile(BFSFile, sb.ToString());
         }
 
         void TestDFS()
         {
-            Debug.Log("Begin BFS test");
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Begin DFS test").AppendLine();
 
             RGVertex<string> V1 = new RGVertex<string>("V1");
             RGVertex<string> V2 = new RGVertex<string>("V2");
@@ -158,52 +180,65 @@ namespace RGGraphCore
 
             string graphData = graph.ToString();
 
-            Debug.Log(graphData);
+            sb.Append(graphData).AppendLine();
 
+            sb.Append("Running DFS from:").Append(V4.ToString()).AppendLine();
             RGSearchAlgorithms.DepthFirstSearch<string>(graph, V4);
 
             List<RGVertex<string>> fromV6 = RGSearchAlgorithms.GetPathToSource<string>(V6);
-            Debug.Log("Start vertex : V6");
+            sb.Append("Start vertex : V6").AppendLine();
             foreach (RGVertex<string> vertex in fromV6)
             {
-                Debug.Log(vertex);
+                sb.Append(vertex.ToString());
             }
+
+            sb.AppendLine();
 
             List<RGVertex<string>> path = RGSearchAlgorithms.DepthFirstSearchWithGoal<string>(graph, V6, V3);
-            Debug.Log("Path from v3 to v6");
+            sb.Append("Path from v3 to v6").AppendLine();
             foreach (RGVertex<string> vertex in path)
             {
-                Debug.Log(vertex);
+                sb.Append(vertex.ToString());
             }
 
-            Debug.Log("End BFS test");
+            sb.AppendLine();
+            sb.Append("End DFS test").AppendLine();
+            debugClass.WriteStringToFile(DFSFile, sb.ToString());
         }
 
-        void TestPuzzle()
+        void TestRandomGenerator()
         {
-            Debug.Log("Begin puzzle solver");
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Begin random generator puzzle solver").AppendLine();
 
             string state = PuzzleSolver.GenerateRandomSolvableState();
-            Debug.Log("Solving " + PuzzleSolver.PrintableState(state));
-            System.Diagnostics.Debug.WriteLine("Solving " + PuzzleSolver.PrintableState(state));
+            sb.Append("Solving " + PuzzleSolver.PrintableState(state)).AppendLine();
 
             System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
             stopWatch.Start();
             List<string> path = PuzzleSolver.DepthFirstSearch(state);
             stopWatch.Stop();
 
-            Debug.Log("Depth first search took " + stopWatch.ElapsedMilliseconds + " ms");
-            Debug.Log("Depth first search path contains " + path.Count + " states");
+            sb.Append("Depth first search took " + stopWatch.ElapsedMilliseconds + " ms").AppendLine();
+            sb.Append("Depth first search path contains " + path.Count + " states").AppendLine();
 
             stopWatch.Reset();
             stopWatch.Start();
             path = PuzzleSolver.BreadthFirstSearch(state);
             stopWatch.Stop();
 
-            Debug.Log("Breadth first search took " + stopWatch.ElapsedMilliseconds + " ms");
-            Debug.Log("Breadth first search path contains " + path.Count + " states");
+            sb.Append("Breadth first search took " + stopWatch.ElapsedMilliseconds + " ms").AppendLine();
+            sb.Append("Breadth first search path contains " + path.Count + " states").AppendLine();
 
-            Debug.Log("End puzzle solver");
+            sb.Append("Printing Solution");
+            foreach(string p in path)
+            {
+                sb.Append(PuzzleSolver.PrintableState(p));
+            }
+
+            sb.Append("End puzzle solver").AppendLine();
+
+            debugClass.WriteStringToFile(RandomGeneratorFile, sb.ToString());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
@@ -43,6 +44,38 @@ public class Debugging : MonoBehaviour {
 
         //Print the text from the file
        // Debug.Log(asset.text);
+    }
+
+    public void WriteString(string stringToWrite)
+    {
+        string path = AssetDatabase.GetAssetPath(DiagnosticFile);
+
+        StreamWriter writer = new StreamWriter(path, false);
+        writer.WriteLine(stringToWrite);
+        writer.Close();
+
+        //Re-import the file to update the reference in the editor
+        AssetDatabase.ImportAsset(path);
+        //  TextAsset asset = Resources.Load(path);
+
+        //Print the text from the file
+        // Debug.Log(asset.text);
+    }
+
+    public void WriteStringToFile(TextAsset InDiagnosticFile, string stringToWrite)
+    {
+        string path = AssetDatabase.GetAssetPath(InDiagnosticFile);
+
+        StreamWriter writer = new StreamWriter(path, false);
+        writer.WriteLine(stringToWrite);
+        writer.Close();
+
+        //Re-import the file to update the reference in the editor
+        AssetDatabase.ImportAsset(path);
+        //  TextAsset asset = Resources.Load(path);
+
+        //Print the text from the file
+        // Debug.Log(asset.text);
     }
 
     [MenuItem("Tools/Read file")]

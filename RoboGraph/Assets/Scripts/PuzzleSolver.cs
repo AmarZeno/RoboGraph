@@ -109,19 +109,17 @@ public class PuzzleSolver {
 
     public static string PrintableState(string state)
     {
-        string sb = "";
+        StringBuilder sb = new StringBuilder();
         for(int i = 0; i < state.Length; i++)
         {
             if(i%3 == 0)
             {
-                sb += "\n";
+                sb.AppendLine();
             }
-            sb += (state[i] + " ");
-           // sb.Append(state[i]).Append(" ");
+            sb.Append(state[i]).Append(" ");
         }
-        sb += "\n";
-       // sb.AppendLine();
-        return sb;
+        sb.AppendLine();
+        return sb.ToString();
     }
 
     #endregion

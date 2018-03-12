@@ -203,6 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1246071018}
   - component: {fileID: 1246071017}
+  - component: {fileID: 1246071019}
   m_Layer: 0
   m_Name: GraphTest
   m_TagString: Untagged
@@ -221,6 +222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ad1c1e870ac1f45b876b1996a1347d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DirectedGraphFile: {fileID: 4900000, guid: aad14b431003d1c4faf502dbde5f96b8, type: 3}
+  TreeFile: {fileID: 4900000, guid: c14479a08ff17be45a883300b20e1e39, type: 3}
+  BFSFile: {fileID: 4900000, guid: c001aabe4f4898743b29b7d12d506188, type: 3}
+  DFSFile: {fileID: 4900000, guid: 0d113a81f555a9d41b628d515256246e, type: 3}
+  RandomGeneratorFile: {fileID: 4900000, guid: 8acaefef7e1078c47a2fcfac31969296, type: 3}
 --- !u!4 &1246071018
 Transform:
   m_ObjectHideFlags: 0
@@ -234,6 +240,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1246071019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1246071016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d1d4ce35447fa418cad67c24018ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiagnosticFile: {fileID: 4900000, guid: 8acaefef7e1078c47a2fcfac31969296, type: 3}
 --- !u!1 &1837171916
 GameObject:
   m_ObjectHideFlags: 0

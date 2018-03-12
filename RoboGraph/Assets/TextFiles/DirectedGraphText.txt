@@ -1,0 +1,13 @@
+Begin Testing Directed Graph
+Graph:
+v1
+	Edge to: v2(w=3) 
+v2
+	Edge to: v3(w=1) v4(w=-5) 
+v3
+	No outgoing edges
+v4
+	Edge to: v1(w=1) 
+
+End of Testing Directed Graph
+

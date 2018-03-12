@@ -1,0 +1,4 @@
+Begin Testing Tree
+Tree values are Root(L1(L11, L12, L13), L2(L21, L22), L3)
+End Testing Tree
+
