@@ -260,6 +260,148 @@ namespace RGGraphCore
 
             return candidate;
         }
+
+        private static RGGrid.Point GetClosestVertex(List<RGGrid.Point> list, Dictionary<RGGrid.Point, float> distanceMap)
+        {
+            RGGrid.Point candidate = list[0];
+            foreach (RGGrid.Point vertex in list)
+            {
+                if (distanceMap[vertex] < distanceMap[candidate])
+                {
+                    // I can use binomial heap if required
+                    candidate = vertex;
+                }
+            }
+
+            return candidate;
+        }
+
+        public static List<RGGrid.Point> DepthFirstSearchInGrid(RGGrid grid, RGGrid.Point startPos, RGGrid.Point endPos)
+        {
+            if(startPos.Equals(endPos))
+            {
+                return new List<RGGrid.Point>() { startPos };
+            }
+
+            Dictionary<RGGrid.Point, RGGrid.Point> visitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
+
+            Stack<RGGrid.Point> stack = new Stack<RGGrid.Point>();
+            stack.Push(startPos);
+
+            while(stack.Count > 0)
+            {
+                RGGrid.Point node = stack.Pop();
+
+                foreach(RGGrid.Point adj in grid.GetAdjacentCells(node))
+                {
+                    if(!visitedMap.ContainsKey(adj))
+                    {
+                        visitedMap.Add(adj, node);
+                        stack.Push(adj);
+
+                        if(adj.Equals(endPos))
+                        {
+                            return GeneratePath(visitedMap, adj);
+                        }
+                    }
+                }
+                if(!visitedMap.ContainsKey(node))
+                {
+                    visitedMap.Add(node, null);
+                }
+            }
+            return null;
+        }
+
+        public static List<RGGrid.Point> BreadthFirstSearchInGrid(RGGrid grid, RGGrid.Point startPos, RGGrid.Point endPos)
+        {
+            if (startPos.Equals(endPos))
+            {
+                return new List<RGGrid.Point>() { startPos };
+            }
+
+            Dictionary<RGGrid.Point, RGGrid.Point> visitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
+
+            Queue<RGGrid.Point> queue = new Queue<RGGrid.Point>();
+            queue.Enqueue(startPos);
+
+            while (queue.Count > 0)
+            {
+                RGGrid.Point node = queue.Dequeue();
+
+                foreach (RGGrid.Point adj in grid.GetAdjacentCells(node))
+                {
+                    if (!visitedMap.ContainsKey(adj))
+                    {
+                        visitedMap.Add(adj, node);
+                        queue.Enqueue(adj);
+
+                        if (adj.Equals(endPos))
+                        {
+                            return GeneratePath(visitedMap, adj);
+                        }
+                    }
+                }
+                if (!visitedMap.ContainsKey(node))
+                {
+                    visitedMap.Add(node, null);
+                }
+            }
+            return null;
+        }
+
+        public static List<RGGrid.Point> DijkstraInGrid(RGGrid grid, RGGrid.Point startPos, RGGrid.Point endPos)
+        {
+            List<RGGrid.Point> unfinishedVertices = new List<RGGrid.Point>();
+            Dictionary<RGGrid.Point, float> distanceMap = new Dictionary<RGGrid.Point, float>();
+            Dictionary<RGGrid.Point, RGGrid.Point> visitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
+
+            unfinishedVertices.Add(startPos);
+
+            distanceMap.Add(startPos, 0);
+            visitedMap.Add(startPos, null);
+
+            while(unfinishedVertices.Count > 0)
+            {
+                RGGrid.Point vertex = GetClosestVertex(unfinishedVertices, distanceMap);
+                unfinishedVertices.Remove(vertex);
+                if(vertex.Equals(endPos))
+                {
+                    return GeneratePath(visitedMap, vertex);
+                }
+                foreach(RGGrid.Point adj in grid.GetAdjacentCells(vertex))
+                {
+                    if(!visitedMap.ContainsKey(adj))
+                    {
+                        unfinishedVertices.Add(adj);
+                    }
+
+                    float adjDist = distanceMap.ContainsKey(adj) ? distanceMap[adj] : int.MaxValue;
+                    float vDist = distanceMap.ContainsKey(vertex) ? distanceMap[vertex] : int.MaxValue;
+                    if(adjDist > vDist + grid.GetCostOfEnteringCell(adj))
+                    {
+                        if(distanceMap.ContainsKey(adj))
+                        {
+                            distanceMap[adj] = vDist + grid.GetCostOfEnteringCell(adj);
+                        }
+                        else
+                        {
+                            distanceMap.Add(adj, vDist + grid.GetCostOfEnteringCell(adj));
+                        }
+
+                        if(visitedMap.ContainsKey(adj))
+                        {
+                            visitedMap[adj] = vertex;
+                        }
+                        else
+                        {
+                            visitedMap.Add(adj, vertex);
+                        }
+                    }
+                }
+            }
+            return null;
+        }
     }
 }
 
