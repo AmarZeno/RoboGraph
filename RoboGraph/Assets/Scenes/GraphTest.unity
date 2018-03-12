@@ -227,6 +227,8 @@ MonoBehaviour:
   BFSFile: {fileID: 4900000, guid: c001aabe4f4898743b29b7d12d506188, type: 3}
   DFSFile: {fileID: 4900000, guid: 0d113a81f555a9d41b628d515256246e, type: 3}
   RandomGeneratorFile: {fileID: 4900000, guid: 8acaefef7e1078c47a2fcfac31969296, type: 3}
+  RandomGeneratorGraphFile: {fileID: 4900000, guid: 58a20c6430053b44f9df3a2d051e899e,
+    type: 3}
 --- !u!4 &1246071018
 Transform:
   m_ObjectHideFlags: 0

@@ -17,13 +17,8 @@ V7
 
 Running BFS from : {Vertex}V4
 Start vertex : V6
-{Vertex}V6
-{Vertex}V5
-{Vertex}V4
+{Vertex}V6{Vertex}V5{Vertex}V4
 Path from v3 to v6
-{Vertex}V3
-{Vertex}V1
-{Vertex}V7
-{Vertex}V6
+{Vertex}V3{Vertex}V1{Vertex}V7{Vertex}V6
 End BFS test
 

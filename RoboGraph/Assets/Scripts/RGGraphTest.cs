@@ -12,6 +12,7 @@ namespace RGGraphCore
         public TextAsset BFSFile;
         public TextAsset DFSFile;
         public TextAsset RandomGeneratorFile;
+        public TextAsset RandomGeneratorGraphFile;
 
         private Debugging debugClass;
         void Start()
@@ -22,7 +23,8 @@ namespace RGGraphCore
             TestTree();
             TestBFS();
             TestDFS();
-            TestRandomGenerator();
+            TestRandomGeneratorWithString();
+            TestRandomGeneratorWithVertexAndEdges();
         }
 
         void TestDirectedGraph()
@@ -206,7 +208,7 @@ namespace RGGraphCore
             debugClass.WriteStringToFile(DFSFile, sb.ToString());
         }
 
-        void TestRandomGenerator()
+        void TestRandomGeneratorWithString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Begin random generator puzzle solver").AppendLine();
@@ -239,6 +241,27 @@ namespace RGGraphCore
             sb.Append("End puzzle solver").AppendLine();
 
             debugClass.WriteStringToFile(RandomGeneratorFile, sb.ToString());
+        }
+
+        void TestRandomGeneratorWithVertexAndEdges()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Begin random generator graph").AppendLine();
+
+            RGRandomGraph randomGraph = new RGRandomGraph();
+
+            const int NoOfNodesToGenerate = 10;
+            randomGraph.GenerateNodes(NoOfNodesToGenerate);
+            randomGraph.ApplyDirectedEdge();
+
+            string graphData = randomGraph.ToString();
+
+            sb.Append(graphData).AppendLine();
+
+
+            sb.Append("End random generator graph").AppendLine();
+
+            debugClass.WriteStringToFile(RandomGeneratorGraphFile, sb.ToString());
         }
     }
 }
