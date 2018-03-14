@@ -16,7 +16,7 @@ public class RGGridManager : MonoBehaviour {
     public int _GridSize = 10;
 
     [SerializeField]
-    private Text _PathText;
+    private Text _PathText, _VisitedText;
 
     private RGGrid _grid;
 
@@ -24,13 +24,39 @@ public class RGGridManager : MonoBehaviour {
 
     private List<RGCell> _cells = new List<RGCell>();
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private string _LevelPath = "level";
 
+    void Start () {
+        LoadLevel(_LevelPath);
+    }
+
+    private void LoadLevel(string level)
+    {
+        _LevelPath = level;
         _PathText.text = "";
-        ReadGridFromFile("level");
-        CreateGrid(_grid);        
-	}
+        _VisitedText.text = "";
+        // ReadGridFromFile(_LevelPath);
+        GenerateRandomGrid();
+        CreateGrid(_grid);
+    }
+
+    private void GenerateRandomGrid()
+    {
+        _GridSize = Random.Range(5, 9);
+        _grid = new RGGrid(_GridSize, _GridSize);
+
+        for (int i = 0; i < _GridSize; i++)
+        {
+            for (int j = 0; j < _GridSize; j++)
+            {
+                string cell = Random.Range(1, 9).ToString();
+                int val = int.Parse(cell);
+                print("i: " + i + ", j: " + j + " = " + cell);
+                _grid[i, j] = int.Parse(cell);
+            }
+        }
+    }
 
     private void ReadGridFromFile(string filename)
     {
@@ -108,6 +134,51 @@ public class RGGridManager : MonoBehaviour {
         StartCoroutine(ShowPath(path));
     }
 
+    public void DijkstraPriority()
+    {
+        ClearPath();
+        var result = RGSearchAlgorithms.DijkstraWithPriorityQueue(_grid, _startCell.GetPosition(), _endCell.GetPosition());
+        ShowVisited(result.Visited);
+        StartCoroutine(ShowPath(result.Path));
+    }
+
+    public void AStar()
+    {
+        ClearPath();
+        var result = RGSearchAlgorithms.AStar(_grid, _startCell.GetPosition(), _endCell.GetPosition());
+        ShowVisited(result.Visited);
+        StartCoroutine(ShowPath(result.Path));
+    }
+
+    public void BestFirst()
+    {
+        ClearPath();
+        var result = RGSearchAlgorithms.BestFirstSearch(_grid, _startCell.GetPosition(), _endCell.GetPosition());
+        ShowVisited(result.Visited);
+        StartCoroutine(ShowPath(result.Path));
+    }
+
+    public void BiAStar()
+    {
+        ClearPath();
+        var result = RGSearchAlgorithms.AStarBiDirectional(_grid, _startCell.GetPosition(), _endCell.GetPosition());
+        ShowVisited(result.Visited);
+        StartCoroutine(ShowPath(result.Path));
+    }
+
+    private void ShowVisited(List<RGGrid.Point> visited)
+    {
+        _VisitedText.text = "Visited: " + visited.Count;
+        foreach (RGGrid.Point point in visited)
+        {
+            RGCell cell = _cells.FirstOrDefault(c => c.GetPosition().Equals(point));
+            if (cell.State == RGCell.CellState.Normal)
+            {
+                cell.SetState(RGCell.CellState.Visited);
+            }
+        }
+    }
+
     private IEnumerator ShowPath(List<RGGrid.Point> path)
     {
         print("Path");
@@ -118,8 +189,15 @@ public class RGGridManager : MonoBehaviour {
         for (int i = 1; i < path.Count - 1; i++)
         {
             RGGrid.Point step = path[i];
-            _cells.FirstOrDefault(c => c.GetPosition().Equals(step)).SetState(RGCell.CellState.Highlight);
-            print(step + " weight: " + _grid.GetCostOfEnteringCell(step));
+            RGCell cell = _cells.FirstOrDefault(c => c.GetPosition().Equals(step));
+
+            if (cell.State == RGCell.CellState.End || cell.State == RGCell.CellState.Start)
+            {
+                continue;
+            }
+
+            cell.SetState(RGCell.CellState.Highlight);
+
             totalWeight += _grid.GetCostOfEnteringCell(step);
             _PathText.text = "Total weight: " + totalWeight;
             yield return new WaitForSeconds(0.1f);
@@ -142,6 +220,26 @@ public class RGGridManager : MonoBehaviour {
             _endCell = cell;
             cell.SetState(RGCell.CellState.End);
             return;
+        }
+    }
+
+    public void ClearPath()
+    {
+        _PathText.text = "";
+        _VisitedText.text = "";
+        for (int i = 0; i < _grid.Width; i++)
+        {
+            for (int j = 0; j < _grid.Height; j++)
+            {
+                RGGrid.Point pos = new RGGrid.Point(i, j);
+                RGCell cell = _cells.FirstOrDefault(c => c.GetPosition().Equals(pos));
+
+                if (cell.State == RGCell.CellState.End || cell.State == RGCell.CellState.Start)
+                {
+                    continue;
+                }
+                cell.SetState(RGCell.CellState.Normal, _grid.GetCostOfEnteringCell(pos));
+            }
         }
     }
 

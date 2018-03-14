@@ -4,9 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RGCell : MonoBehaviour {
+public class RGCell : MonoBehaviour
+{
 
-    public enum CellState { Normal, Start, End, Highlight, Impassable }
+    public enum CellState { Normal, Start, End, Highlight, Impassable, Visited }
 
     public delegate void ClickedEventHandler(object sender, EventArgs e);
 
@@ -14,9 +15,11 @@ public class RGCell : MonoBehaviour {
 
     public Color _highlightColor = new Color(243f / 255, 112f / 255, 33f / 255);
     public Color _impassableColor = new Color(51f / 255, 51f / 255, 51f / 255);
+    public Color _visitedColor = new Color(66f / 255, 134f / 255, 244f / 255);
     public Color _normalColor = Color.white;
 
     private CellState _state;
+    public CellState State { get { return _state; } }
 
     [SerializeField]
     private SpriteRenderer _BgSprite;
@@ -32,10 +35,11 @@ public class RGCell : MonoBehaviour {
     private int _x, _y;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         _collider = GetComponent<BoxCollider2D>();
         //SetState(CellState.Normal);
-	}
+    }
 
     protected virtual void OnClicked(EventArgs e)
     {
@@ -63,7 +67,7 @@ public class RGCell : MonoBehaviour {
         switch (_state)
         {
             case CellState.Normal:
-                _BgSprite.color = Color.Lerp(_normalColor, _impassableColor, (weight - 1) / 9f);                
+                _BgSprite.color = Color.Lerp(_normalColor, _impassableColor, (weight - 1) / 9f);
                 break;
             case CellState.Highlight:
                 _BgSprite.color = _highlightColor;
@@ -73,18 +77,22 @@ public class RGCell : MonoBehaviour {
                 break;
             case CellState.Start:
                 _BgSprite.color = _highlightColor;
-                _Text.text = "Start";
+                _Text.text = "s";
                 break;
             case CellState.End:
                 _BgSprite.color = _highlightColor;
-                _Text.text = "End";
+                _Text.text = "e";
+                break;
+            case CellState.Visited:
+                _BgSprite.color = _visitedColor;
                 break;
         }
     }
 
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -92,6 +100,7 @@ public class RGCell : MonoBehaviour {
 
             if (hitCollider)
             {
+
                 OnClicked(EventArgs.Empty);
             }
         }
