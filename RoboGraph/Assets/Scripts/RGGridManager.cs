@@ -13,7 +13,7 @@ public class RGGridManager : MonoBehaviour {
     private RGCell _CellPrefab;
 
     [SerializeField]
-    private int _GridSize = 10;
+    public int _GridSize = 10;
 
     [SerializeField]
     private Text _PathText;
@@ -64,15 +64,6 @@ public class RGGridManager : MonoBehaviour {
             {
                 RGCell cell = Instantiate(_CellPrefab) as RGCell;
                 cell.transform.position = new Vector2(startX + i, startY + j);
-                //if (grid[i, j])
-                //{
-                //    cell.SetState(Cell.CellState.Normal);
-                //}
-                //else
-                //{
-                //    cell.SetState(Cell.CellState.Impassable);
-                //}
-                
                 cell.Clicked += Cell_Clicked;
                 cell.SetPosition(i, j);
                 cell.SetState(RGCell.CellState.Normal, grid.GetCostOfEnteringCell(cell.GetPosition()));

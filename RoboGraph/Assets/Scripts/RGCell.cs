@@ -12,9 +12,9 @@ public class RGCell : MonoBehaviour {
 
     public event ClickedEventHandler Clicked;
 
-    private Color _highlightColor = new Color(243f / 255, 112f / 255, 33f / 255);
-    private Color _impassableColor = new Color(51f / 255, 51f / 255, 51f / 255);
-    private Color _normalColor = Color.white;
+    public Color _highlightColor = new Color(243f / 255, 112f / 255, 33f / 255);
+    public Color _impassableColor = new Color(51f / 255, 51f / 255, 51f / 255);
+    public Color _normalColor = Color.white;
 
     private CellState _state;
 
@@ -73,11 +73,11 @@ public class RGCell : MonoBehaviour {
                 break;
             case CellState.Start:
                 _BgSprite.color = _highlightColor;
-                _Text.text = "s";
+                _Text.text = "Start";
                 break;
             case CellState.End:
                 _BgSprite.color = _highlightColor;
-                _Text.text = "e";
+                _Text.text = "End";
                 break;
         }
     }

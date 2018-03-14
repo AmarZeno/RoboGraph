@@ -1,105 +1,105 @@
 Random Graph Medium Size
 Graph:
 V0
-	Edge to: V1(w=2) V31(w=1) 
+	No outgoing edges
 V1
-	Edge to: V25(w=2) 
+	Edge to: V16(w=1) 
 V2
-	Edge to: V11(w=2) 
+	Edge to: V39(w=1) 
 V3
-	Edge to: V10(w=2) V43(w=2) V46(w=1) V49(w=1) 
+	Edge to: V0(w=2) V26(w=2) 
 V4
-	Edge to: V4(w=2) V14(w=1) V42(w=2) 
+	Edge to: V7(w=1) V8(w=1) V24(w=1) V25(w=1) 
 V5
-	Edge to: V2(w=2) V26(w=2) V45(w=1) 
+	Edge to: V17(w=1) V46(w=1) 
 V6
-	No outgoing edges
+	Edge to: V5(w=2) V14(w=1) V23(w=1) V45(w=1) 
 V7
-	Edge to: V38(w=2) 
+	Edge to: V10(w=2) 
 V8
-	Edge to: V11(w=1) V28(w=2) V30(w=1) V36(w=1) 
+	Edge to: V6(w=1) V31(w=2) 
 V9
-	Edge to: V19(w=1) V35(w=1) V36(w=1) 
+	Edge to: V10(w=1) V24(w=1) V27(w=2) V34(w=1) 
 V10
-	Edge to: V31(w=1) V33(w=1) 
+	Edge to: V23(w=2) V33(w=1) 
 V11
-	Edge to: V14(w=1) V23(w=2) V31(w=2) V35(w=1) 
+	Edge to: V30(w=2) V48(w=1) 
 V12
-	Edge to: V26(w=1) 
+	No outgoing edges
 V13
-	No outgoing edges
+	Edge to: V1(w=2) V12(w=1) V27(w=1) 
 V14
-	No outgoing edges
+	Edge to: V32(w=1) V34(w=2) 
 V15
-	Edge to: V2(w=1) V15(w=1) 
+	Edge to: V33(w=1) V35(w=1) V43(w=1) 
 V16
-	No outgoing edges
+	Edge to: V32(w=2) V34(w=1) V39(w=2) V46(w=1) 
 V17
-	Edge to: V0(w=2) V16(w=2) V33(w=2) 
+	Edge to: V2(w=2) V31(w=1) V39(w=1) 
 V18
-	No outgoing edges
+	Edge to: V14(w=1) 
 V19
-	Edge to: V0(w=2) V2(w=2) 
+	Edge to: V26(w=2) V32(w=2) V48(w=2) 
 V20
-	Edge to: V0(w=1) 
+	Edge to: V11(w=2) V31(w=1) V34(w=1) 
 V21
-	Edge to: V41(w=2) V46(w=1) 
+	No outgoing edges
 V22
-	Edge to: V26(w=1) V43(w=2) V48(w=1) V49(w=1) 
+	Edge to: V9(w=1) V37(w=1) 
 V23
-	Edge to: V22(w=1) V23(w=2) 
+	Edge to: V47(w=1) 
 V24
-	Edge to: V7(w=1) V19(w=2) V33(w=1) 
+	Edge to: V11(w=2) V33(w=1) V38(w=2) V43(w=1) 
 V25
-	No outgoing edges
+	Edge to: V12(w=1) V14(w=2) 
 V26
-	Edge to: V12(w=2) V29(w=2) V36(w=2) V39(w=1) 
+	Edge to: V7(w=2) 
 V27
-	Edge to: V9(w=1) V19(w=2) V23(w=1) 
+	Edge to: V13(w=1) V36(w=2) V48(w=1) 
 V28
-	No outgoing edges
+	Edge to: V24(w=2) 
 V29
-	Edge to: V1(w=1) V14(w=2) V24(w=1) V35(w=1) 
+	Edge to: V37(w=1) V38(w=2) V40(w=2) 
 V30
-	Edge to: V11(w=1) V47(w=1) 
+	Edge to: V5(w=2) V8(w=2) V27(w=1) V45(w=1) 
 V31
-	Edge to: V10(w=1) V26(w=2) 
+	Edge to: V15(w=2) V28(w=1) 
 V32
-	Edge to: V0(w=2) V21(w=2) V31(w=1) V46(w=1) 
+	Edge to: V10(w=2) V45(w=1) 
 V33
-	Edge to: V9(w=1) V11(w=2) V46(w=2) 
+	No outgoing edges
 V34
-	Edge to: V2(w=1) V7(w=1) V39(w=1) 
+	Edge to: V14(w=1) V33(w=2) 
 V35
-	Edge to: V21(w=2) V28(w=2) 
+	Edge to: V22(w=1) V35(w=1) V36(w=2) V40(w=2) 
 V36
-	Edge to: V21(w=1) V25(w=2) V33(w=2) V40(w=2) 
+	Edge to: V9(w=2) V14(w=1) 
 V37
-	Edge to: V5(w=1) V27(w=1) 
+	Edge to: V9(w=2) 
 V38
-	Edge to: V10(w=2) V21(w=2) 
+	No outgoing edges
 V39
-	No outgoing edges
+	Edge to: V8(w=2) V24(w=2) V27(w=2) V48(w=1) 
 V40
-	Edge to: V33(w=1) 
+	Edge to: V23(w=2) V35(w=2) V47(w=1) 
 V41
-	No outgoing edges
+	Edge to: V3(w=2) V23(w=1) 
 V42
-	Edge to: V4(w=1) V24(w=2) V46(w=1) V48(w=1) 
+	Edge to: V22(w=1) V33(w=1) 
 V43
-	Edge to: V9(w=2) V43(w=2) 
+	Edge to: V28(w=1) V45(w=2) 
 V44
-	Edge to: V2(w=1) V23(w=1) V42(w=2) 
+	Edge to: V3(w=2) V11(w=1) 
 V45
-	Edge to: V17(w=1) 
+	No outgoing edges
 V46
-	Edge to: V3(w=2) V31(w=2) V44(w=1) 
+	Edge to: V32(w=2) 
 V47
-	Edge to: V26(w=2) V29(w=2) 
+	Edge to: V28(w=2) V31(w=1) V44(w=1) V49(w=1) 
 V48
-	Edge to: V37(w=2) 
+	Edge to: V7(w=2) V27(w=1) V49(w=1) 
 V49
-	Edge to: V21(w=1) V31(w=2) V41(w=2) V42(w=1) 
+	Edge to: V12(w=1) 
 
 
 
