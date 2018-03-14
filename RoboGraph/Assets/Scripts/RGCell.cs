@@ -77,11 +77,11 @@ public class RGCell : MonoBehaviour
                 break;
             case CellState.Start:
                 _BgSprite.color = _highlightColor;
-                _Text.text = "s";
+                _Text.text = "Start";
                 break;
             case CellState.End:
                 _BgSprite.color = _highlightColor;
-                _Text.text = "e";
+                _Text.text = "End";
                 break;
             case CellState.Visited:
                 _BgSprite.color = _visitedColor;

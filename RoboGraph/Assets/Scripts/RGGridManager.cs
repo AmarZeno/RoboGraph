@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using RGGraphCore;
+using System.Text;
 
 public class RGGridManager : MonoBehaviour {
 
@@ -27,7 +28,21 @@ public class RGGridManager : MonoBehaviour {
     [SerializeField]
     private string _LevelPath = "level";
 
+    public TextAsset AdvSearchAlgorithmFile;
+
+    public int MinimumGridRange = 0;
+    public int MaximumGridRange = 0;
+
+    public int MinimumEdgeCost = 0;
+    public int MaximumEdgeCost = 0;
+
+    private Debugging debugClass;
+
+    StringBuilder sb;
+
     void Start () {
+        debugClass = this.gameObject.GetComponent<Debugging>();
+        sb = new StringBuilder();
         LoadLevel(_LevelPath);
     }
 
@@ -43,14 +58,14 @@ public class RGGridManager : MonoBehaviour {
 
     private void GenerateRandomGrid()
     {
-        _GridSize = Random.Range(5, 9);
+        _GridSize = Random.Range(MinimumGridRange, MaximumGridRange);
         _grid = new RGGrid(_GridSize, _GridSize);
 
         for (int i = 0; i < _GridSize; i++)
         {
             for (int j = 0; j < _GridSize; j++)
             {
-                string cell = Random.Range(1, 9).ToString();
+                string cell = Random.Range(MinimumEdgeCost, MaximumEdgeCost).ToString();
                 int val = int.Parse(cell);
                 print("i: " + i + ", j: " + j + " = " + cell);
                 _grid[i, j] = int.Parse(cell);
@@ -130,40 +145,87 @@ public class RGGridManager : MonoBehaviour {
     public void Dijkstra()
     {
         var path = RGSearchAlgorithms.DijkstraInGrid(_grid, _startCell.GetPosition(), _endCell.GetPosition());
-
         StartCoroutine(ShowPath(path));
     }
 
     public void DijkstraPriority()
     {
+        sb.AppendLine().AppendLine().AppendLine();
+        sb.Append("Begin Dijkstra Priority").AppendLine();
+
+        System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+        stopWatch.Start();
+
         ClearPath();
         var result = RGSearchAlgorithms.DijkstraWithPriorityQueue(_grid, _startCell.GetPosition(), _endCell.GetPosition());
         ShowVisited(result.Visited);
         StartCoroutine(ShowPath(result.Path));
+
+        stopWatch.Stop();
+
+        sb.Append("Average run time" + stopWatch.ElapsedMilliseconds + " ms").AppendLine();
+        sb.Append("No of nodes in open list :" + result.Visited.Count).AppendLine();
+        sb.Append("No of nodes in closed list :" + result.Path.Count).AppendLine();
+        sb.AppendLine();
     }
 
     public void AStar()
     {
+        sb.AppendLine().AppendLine().AppendLine();
+        sb.Append("A* Priority").AppendLine();
+
+        System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+        stopWatch.Start();
+
         ClearPath();
         var result = RGSearchAlgorithms.AStar(_grid, _startCell.GetPosition(), _endCell.GetPosition());
         ShowVisited(result.Visited);
         StartCoroutine(ShowPath(result.Path));
+
+        stopWatch.Stop();
+
+        sb.Append("Average run time" + stopWatch.ElapsedMilliseconds + " ms").AppendLine();
+        sb.Append("No of nodes in open list :" + result.Visited.Count).AppendLine();
+        sb.Append("No of nodes in closed list :" + result.Path.Count).AppendLine();
+        sb.AppendLine();
     }
 
     public void BestFirst()
     {
+        sb.AppendLine().AppendLine().AppendLine();
+        sb.Append("Best First Priority").AppendLine();
+
+        System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+        stopWatch.Start();
+
         ClearPath();
         var result = RGSearchAlgorithms.BestFirstSearch(_grid, _startCell.GetPosition(), _endCell.GetPosition());
         ShowVisited(result.Visited);
         StartCoroutine(ShowPath(result.Path));
+
+        sb.Append("Average run time" + stopWatch.ElapsedMilliseconds + " ms").AppendLine();
+        sb.Append("No of nodes in open list :" + result.Visited.Count).AppendLine();
+        sb.Append("No of nodes in closed list :" + result.Path.Count).AppendLine();
+        sb.AppendLine();
     }
 
     public void BiAStar()
     {
+        sb.AppendLine().AppendLine().AppendLine();
+        sb.Append("Bi directional A*").AppendLine();
+
+        System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+        stopWatch.Start();
+
         ClearPath();
         var result = RGSearchAlgorithms.AStarBiDirectional(_grid, _startCell.GetPosition(), _endCell.GetPosition());
         ShowVisited(result.Visited);
         StartCoroutine(ShowPath(result.Path));
+
+        sb.Append("Average run time" + stopWatch.ElapsedMilliseconds + " ms").AppendLine();
+        sb.Append("No of nodes in open list :" + result.Visited.Count).AppendLine();
+        sb.Append("No of nodes in closed list :" + result.Path.Count).AppendLine();
+        sb.AppendLine();
     }
 
     private void ShowVisited(List<RGGrid.Point> visited)
@@ -204,6 +266,10 @@ public class RGGridManager : MonoBehaviour {
         }
 
         _PathText.text = "Total weight: " + totalWeight;
+
+        sb.Append("Average cost of the solution :" + totalWeight).AppendLine();
+        sb.Append("End of Algorithm").AppendLine().AppendLine();
+        debugClass.WriteStringToFile(AdvSearchAlgorithmFile, sb.ToString());
     }
 
     private void Cell_Clicked(object sender, System.EventArgs e)

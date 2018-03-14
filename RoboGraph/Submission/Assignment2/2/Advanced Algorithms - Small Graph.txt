@@ -1,0 +1,43 @@
+
+Best First Priority
+Average run time8 ms
+No of nodes in open list :44
+No of nodes in closed list :15
+
+Average cost of the solution :54
+End of Algorithm
+
+
+
+
+A* Priority
+Average run time5 ms
+No of nodes in open list :98
+No of nodes in closed list :17
+
+Average cost of the solution :38
+End of Algorithm
+
+
+
+
+Bi directional A*
+Average run time6 ms
+No of nodes in open list :99
+No of nodes in closed list :18
+
+Average cost of the solution :38
+End of Algorithm
+
+
+
+
+Begin Dijkstra Priority
+Average run time5 ms
+No of nodes in open list :99
+No of nodes in closed list :17
+
+Average cost of the solution :38
+End of Algorithm
+
+
