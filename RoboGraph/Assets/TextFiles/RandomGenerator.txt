@@ -1,13 +1,13 @@
 Begin random generator puzzle solver
 Solving 
-6 4 1 
-2 * 8 
-7 5 3 
+* 7 8 
+4 2 3 
+1 6 5 
 
-Depth first search took 80 ms
-Depth first search path contains 20985 states
-Breadth first search took 203 ms
-Breadth first search path contains 23 states
+Depth first search took 120 ms
+Depth first search path contains 34173 states
+Breadth first search took 108 ms
+Breadth first search path contains 21 states
 Printing Solution
 1 2 3 
 4 5 6 
@@ -22,83 +22,76 @@ Printing Solution
 7 8 6 
 
 1 2 3 
-4 8 5 
+* 4 5 
+7 8 6 
+
+* 2 3 
+1 4 5 
+7 8 6 
+
+2 * 3 
+1 4 5 
+7 8 6 
+
+2 4 3 
+1 * 5 
+7 8 6 
+
+2 4 3 
+1 8 5 
 7 * 6 
 
-1 2 3 
-4 8 5 
-7 6 * 
+2 4 3 
+1 8 5 
+* 7 6 
 
-1 2 3 
-4 8 * 
-7 6 5 
+2 4 3 
+* 8 5 
+1 7 6 
 
-1 2 * 
-4 8 3 
-7 6 5 
+* 4 3 
+2 8 5 
+1 7 6 
 
-1 * 2 
-4 8 3 
-7 6 5 
-
-1 8 2 
 4 * 3 
-7 6 5 
+2 8 5 
+1 7 6 
 
-1 8 2 
-4 6 3 
-7 * 5 
+4 8 3 
+2 * 5 
+1 7 6 
 
-1 8 2 
-4 6 3 
-7 5 * 
+4 8 3 
+2 7 5 
+1 * 6 
 
-1 8 2 
-4 6 * 
-7 5 3 
+4 8 3 
+2 7 5 
+1 6 * 
 
-1 8 * 
-4 6 2 
-7 5 3 
+4 8 3 
+2 7 * 
+1 6 5 
 
-1 * 8 
-4 6 2 
-7 5 3 
+4 8 * 
+2 7 3 
+1 6 5 
 
-* 1 8 
-4 6 2 
-7 5 3 
+4 * 8 
+2 7 3 
+1 6 5 
 
-4 1 8 
-* 6 2 
-7 5 3 
+4 7 8 
+2 * 3 
+1 6 5 
 
-4 1 8 
-6 * 2 
-7 5 3 
+4 7 8 
+* 2 3 
+1 6 5 
 
-4 1 8 
-6 2 * 
-7 5 3 
-
-4 1 * 
-6 2 8 
-7 5 3 
-
-4 * 1 
-6 2 8 
-7 5 3 
-
-* 4 1 
-6 2 8 
-7 5 3 
-
-6 4 1 
-* 2 8 
-7 5 3 
-
-6 4 1 
-2 * 8 
-7 5 3 
+* 7 8 
+4 2 3 
+1 6 5 
 End puzzle solver
+
 
