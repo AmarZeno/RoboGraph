@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1999810845716284}
+  m_RootGameObject: {fileID: 1901899337089930}
   m_IsPrefabParent: 1
---- !u!1 &1644899016992184
+--- !u!1 &1615054837960980
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4076185637113354}
-  - component: {fileID: 212625262081197362}
+  - component: {fileID: 4145982313203728}
+  - component: {fileID: 212093154885487820}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -27,16 +27,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1999810845716284
+--- !u!1 &1901899337089930
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4960566346189940}
-  - component: {fileID: 212565571855212882}
-  - component: {fileID: 61960037086646808}
+  - component: {fileID: 4474262020619530}
+  - component: {fileID: 212907922345623510}
+  - component: {fileID: 61339048728869004}
+  - component: {fileID: 114574195186490288}
   m_Layer: 0
   m_Name: Apple 1
   m_TagString: Untagged
@@ -44,39 +45,39 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4076185637113354
+--- !u!4 &4145982313203728
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1644899016992184}
+  m_GameObject: {fileID: 1615054837960980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
-  m_Father: {fileID: 4960566346189940}
+  m_Father: {fileID: 4474262020619530}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4960566346189940
+--- !u!4 &4474262020619530
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1999810845716284}
+  m_GameObject: {fileID: 1901899337089930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4076185637113354}
+  - {fileID: 4145982313203728}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61960037086646808
+--- !u!61 &61339048728869004
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1999810845716284}
+  m_GameObject: {fileID: 1901899337089930}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -96,13 +97,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!212 &212565571855212882
+--- !u!114 &114574195186490288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901899337089930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4c289ea16ace0489dacb728e409136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &212093154885487820
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1999810845716284}
-  m_Enabled: 0
+  m_GameObject: {fileID: 1615054837960980}
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -140,13 +152,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!212 &212625262081197362
+--- !u!212 &212907922345623510
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1644899016992184}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1901899337089930}
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

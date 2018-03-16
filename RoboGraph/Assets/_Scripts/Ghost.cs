@@ -50,11 +50,29 @@ public class Ghost : MonoBehaviour {
     [SerializeField]
     private GameObject GameApplePrefab;
 
+    GameObject gameApple;
+
     // Use this for initialization
     void Start () {
         
         SetState(GhostState.Normal);
-	}
+        SpawnApplePosition();
+
+    }
+
+    public void SpawnApplePosition()
+    {
+        gameApple = Instantiate(GameApplePrefab) as GameObject;
+    }
+
+    public void UpdateApplePosition()
+    {
+        Point newPoint = new Point(0, 0);
+        newPoint.X = UnityEngine.Random.Range(0, _grid.Width);
+        newPoint.Y = UnityEngine.Random.Range(0, _grid.Height);
+        gameApple.transform.position = _grid.GridToWorldPosition(newPoint);
+        _player.transform.position = gameApple.transform.position;
+    }
 
     public void SetApplePrefab(GameObject ApplePrefab)
     {
@@ -137,12 +155,11 @@ public class Ghost : MonoBehaviour {
         if (_moveGoal == null || EpsilonClose(transform.position, _moveGoal))
         {
             var point = _grid.GetClosestPoint(transform.position);
+            UpdateApplePosition();
             Point goalPoint = _ai.GetNextMoveGoal(point, _grid.GetClosestPoint(_player.transform.position));
             _moveGoal = _grid.GridToWorldPosition(goalPoint);
         }
 
-        GameObject gameApple = Instantiate(GameApplePrefab) as GameObject;
-        gameApple.transform.position = _moveGoal;
         transform.position = Vector2.MoveTowards(transform.position, _moveGoal, _speed * Time.deltaTime);
     }
 
@@ -166,6 +183,8 @@ public class Ghost : MonoBehaviour {
 
         public Point GetNextMoveGoal(Point ghostPosition, Point playerPosition)
         {
+
+
             if (_AIState == GhostAIState.TargetingWithLag && _AIrefreshCount > 9)
             {
                 _AIrefreshCount = 0;
