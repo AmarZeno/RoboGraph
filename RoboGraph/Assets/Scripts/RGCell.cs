@@ -55,9 +55,9 @@ public class RGCell : MonoBehaviour
         _y = y;
     }
 
-    public RGGrid.Point GetPosition()
+    public Point GetPosition()
     {
-        return new RGGrid.Point(_x, _y);
+        return new Point(_x, _y);
     }
 
     public void SetState(CellState state, float weight = 0)

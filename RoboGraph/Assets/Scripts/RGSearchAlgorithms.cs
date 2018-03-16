@@ -263,10 +263,10 @@ namespace RGGraphCore
             return candidate;
         }
 
-        private static RGGrid.Point GetClosestVertex(List<RGGrid.Point> list, Dictionary<RGGrid.Point, float> distanceMap)
+        private static Point GetClosestVertex(List<Point> list, Dictionary<Point, float> distanceMap)
         {
-            RGGrid.Point candidate = list[0];
-            foreach (RGGrid.Point vertex in list)
+            Point candidate = list[0];
+            foreach (Point vertex in list)
             {
                 if (distanceMap[vertex] < distanceMap[candidate])
                 {
@@ -278,23 +278,23 @@ namespace RGGraphCore
             return candidate;
         }
 
-        public static List<RGGrid.Point> DepthFirstSearchInGrid(RGGrid grid, RGGrid.Point startPos, RGGrid.Point endPos)
+        public static List<Point> DepthFirstSearchInGrid(RGGrid grid, Point startPos, Point endPos)
         {
             if(startPos.Equals(endPos))
             {
-                return new List<RGGrid.Point>() { startPos };
+                return new List<Point>() { startPos };
             }
 
-            Dictionary<RGGrid.Point, RGGrid.Point> visitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
+            Dictionary<Point, Point> visitedMap = new Dictionary<Point, Point>();
 
-            Stack<RGGrid.Point> stack = new Stack<RGGrid.Point>();
+            Stack<Point> stack = new Stack<Point>();
             stack.Push(startPos);
 
             while(stack.Count > 0)
             {
-                RGGrid.Point node = stack.Pop();
+                Point node = stack.Pop();
 
-                foreach(RGGrid.Point adj in grid.GetAdjacentCells(node))
+                foreach(Point adj in grid.GetAdjacentCells(node))
                 {
                     if(!visitedMap.ContainsKey(adj))
                     {
@@ -315,23 +315,23 @@ namespace RGGraphCore
             return null;
         }
 
-        public static List<RGGrid.Point> BreadthFirstSearchInGrid(RGGrid grid, RGGrid.Point startPos, RGGrid.Point endPos)
+        public static List<Point> BreadthFirstSearchInGrid(RGGrid grid, Point startPos, Point endPos)
         {
             if (startPos.Equals(endPos))
             {
-                return new List<RGGrid.Point>() { startPos };
+                return new List<Point>() { startPos };
             }
 
-            Dictionary<RGGrid.Point, RGGrid.Point> visitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
+            Dictionary<Point, Point> visitedMap = new Dictionary<Point, Point>();
 
-            Queue<RGGrid.Point> queue = new Queue<RGGrid.Point>();
+            Queue<Point> queue = new Queue<Point>();
             queue.Enqueue(startPos);
 
             while (queue.Count > 0)
             {
-                RGGrid.Point node = queue.Dequeue();
+                Point node = queue.Dequeue();
 
-                foreach (RGGrid.Point adj in grid.GetAdjacentCells(node))
+                foreach (Point adj in grid.GetAdjacentCells(node))
                 {
                     if (!visitedMap.ContainsKey(adj))
                     {
@@ -352,11 +352,11 @@ namespace RGGraphCore
             return null;
         }
 
-        public static List<RGGrid.Point> DijkstraInGrid(RGGrid grid, RGGrid.Point startPos, RGGrid.Point endPos)
+        public static List<Point> DijkstraInGrid(RGGrid grid, Point startPos, Point endPos)
         {
-            List<RGGrid.Point> unfinishedVertices = new List<RGGrid.Point>();
-            Dictionary<RGGrid.Point, float> distanceMap = new Dictionary<RGGrid.Point, float>();
-            Dictionary<RGGrid.Point, RGGrid.Point> visitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
+            List<Point> unfinishedVertices = new List<Point>();
+            Dictionary<Point, float> distanceMap = new Dictionary<Point, float>();
+            Dictionary<Point, Point> visitedMap = new Dictionary<Point, Point>();
 
             unfinishedVertices.Add(startPos);
 
@@ -365,13 +365,13 @@ namespace RGGraphCore
 
             while(unfinishedVertices.Count > 0)
             {
-                RGGrid.Point vertex = GetClosestVertex(unfinishedVertices, distanceMap);
+                Point vertex = GetClosestVertex(unfinishedVertices, distanceMap);
                 unfinishedVertices.Remove(vertex);
                 if(vertex.Equals(endPos))
                 {
                     return GeneratePath(visitedMap, vertex);
                 }
-                foreach(RGGrid.Point adj in grid.GetAdjacentCells(vertex))
+                foreach(Point adj in grid.GetAdjacentCells(vertex))
                 {
                     if(!visitedMap.ContainsKey(adj))
                     {
@@ -405,10 +405,10 @@ namespace RGGraphCore
             return null;
         }
 
-        public static List<RGGrid.Point> GeneratePath(Dictionary<RGGrid.Point, RGGrid.Point> parentMap, RGGrid.Point endState)
+        public static List<Point> GeneratePath(Dictionary<Point, Point> parentMap, Point endState)
         {
-            List<RGGrid.Point> path = new List<RGGrid.Point>();
-            RGGrid.Point parent = endState;
+            List<Point> path = new List<Point>();
+            Point parent = endState;
             while (parent != null && parentMap.ContainsKey(parent))
             {
                 path.Add(parent);
@@ -420,8 +420,8 @@ namespace RGGraphCore
 
         public struct RGSearchResult
         {
-            public List<RGGrid.Point> Path { get; set; }
-            public List<RGGrid.Point> Visited { get; set; }
+            public List<Point> Path { get; set; }
+            public List<Point> Visited { get; set; }
         }
 
         // This is used to implement the best first search.
@@ -464,11 +464,11 @@ namespace RGGraphCore
             }
         }
 
-        public static RGSearchResult BestFirstSearch(RGGrid grid, RGGrid.Point StartPosition, RGGrid.Point EndPosition)
+        public static RGSearchResult BestFirstSearch(RGGrid grid, Point StartPosition, Point EndPosition)
         {
-            RGPriorityQueue<RGGrid.Point> queue = new RGPriorityQueue<RGGrid.Point>();
-            Dictionary<RGGrid.Point, float> distanceMap = new Dictionary<RGGrid.Point, float>();
-            Dictionary<RGGrid.Point, RGGrid.Point> visitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
+            RGPriorityQueue<Point> queue = new RGPriorityQueue<Point>();
+            Dictionary<Point, float> distanceMap = new Dictionary<Point, float>();
+            Dictionary<Point, Point> visitedMap = new Dictionary<Point, Point>();
 
             queue.Enqueue(StartPosition, 0);
             distanceMap.Add(StartPosition, 0);
@@ -476,17 +476,17 @@ namespace RGGraphCore
 
             while(!queue.Empty)
             {
-                RGGrid.Point current = queue.Dequeue();
+                Point current = queue.Dequeue();
                 if(current.Equals(EndPosition))
                 {
                     return new RGSearchResult
                     {
                         Path = GeneratePath(visitedMap, current),
-                        Visited = new List<RGGrid.Point>(visitedMap.Keys)
+                        Visited = new List<Point>(visitedMap.Keys)
                     };
                 }
 
-                foreach(RGGrid.Point neighbor in grid.GetAdjacentCells(current))
+                foreach(Point neighbor in grid.GetAdjacentCells(current))
                 {
                     if(!visitedMap.ContainsKey(neighbor))
                     {
@@ -500,7 +500,7 @@ namespace RGGraphCore
             return new RGSearchResult();
         }
 
-        private static float Heuristic(RGGrid.Point endPosition, RGGrid.Point Point, bool useManhattan = true)
+        private static float Heuristic(Point endPosition, Point Point, bool useManhattan = true)
         {
             if(useManhattan)
             {
@@ -512,21 +512,21 @@ namespace RGGraphCore
             }
         }
 
-        private static float Manhattan(RGGrid.Point FirstPoint, RGGrid.Point SecondPoint)
+        private static float Manhattan(Point FirstPoint, Point SecondPoint)
         {
             return Math.Abs(FirstPoint.X - SecondPoint.X) + Math.Abs(FirstPoint.Y - FirstPoint.Y);
         }
 
-        private static float Euclidean(RGGrid.Point FirstPoint, RGGrid.Point SecondPoint)
+        private static float Euclidean(Point FirstPoint, Point SecondPoint)
         {
             return (float)Math.Sqrt(((FirstPoint.X - SecondPoint.X) * (FirstPoint.X - SecondPoint.X)) + ((FirstPoint.Y - SecondPoint.Y) * (FirstPoint.Y - SecondPoint.Y)));
         }
 
-        public static RGSearchResult DijkstraWithPriorityQueue(RGGrid grid, RGGrid.Point StartPosition, RGGrid.Point EndPosition)
+        public static RGSearchResult DijkstraWithPriorityQueue(RGGrid grid, Point StartPosition, Point EndPosition)
         {
-            RGPriorityQueue<RGGrid.Point> queue = new RGPriorityQueue<RGGrid.Point>();
-            Dictionary<RGGrid.Point, float> distanceMap = new Dictionary<RGGrid.Point, float>();
-            Dictionary<RGGrid.Point, RGGrid.Point> visitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
+            RGPriorityQueue<Point> queue = new RGPriorityQueue<Point>();
+            Dictionary<Point, float> distanceMap = new Dictionary<Point, float>();
+            Dictionary<Point, Point> visitedMap = new Dictionary<Point, Point>();
 
             queue.Enqueue(StartPosition, 0);
 
@@ -535,17 +535,17 @@ namespace RGGraphCore
 
             while(!queue.Empty)
             {
-                RGGrid.Point current = queue.Dequeue();
+                Point current = queue.Dequeue();
                 if(current.Equals(EndPosition))
                 {
                     return new RGSearchResult
                     {
                         Path = GeneratePath(visitedMap, current),
-                        Visited = new List<RGGrid.Point>(visitedMap.Keys)
+                        Visited = new List<Point>(visitedMap.Keys)
                     };
                 }
 
-                foreach(RGGrid.Point adj in grid.GetAdjacentCells(current))
+                foreach(Point adj in grid.GetAdjacentCells(current))
                 {
                     float newDist = distanceMap[current] + grid.GetCostOfEnteringCell(adj);
                     if(!distanceMap.ContainsKey(adj) || newDist < distanceMap[adj])
@@ -560,11 +560,11 @@ namespace RGGraphCore
             return new RGSearchResult();
         }
 
-        public static RGSearchResult AStar(RGGrid grid, RGGrid.Point StartPosition, RGGrid.Point EndPosition)
+        public static RGSearchResult AStar(RGGrid grid, Point StartPosition, Point EndPosition)
         {
-            RGPriorityQueue<RGGrid.Point> queue = new RGPriorityQueue<RGGrid.Point>();
-            Dictionary<RGGrid.Point, float> distanceMap = new Dictionary<RGGrid.Point, float>();
-            Dictionary<RGGrid.Point, RGGrid.Point> visitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
+            RGPriorityQueue<Point> queue = new RGPriorityQueue<Point>();
+            Dictionary<Point, float> distanceMap = new Dictionary<Point, float>();
+            Dictionary<Point, Point> visitedMap = new Dictionary<Point, Point>();
 
             queue.Enqueue(StartPosition, 0);
             distanceMap.Add(StartPosition, 0);
@@ -572,17 +572,17 @@ namespace RGGraphCore
 
             while (!queue.Empty)
             {
-                RGGrid.Point current = queue.Dequeue();
+                Point current = queue.Dequeue();
                 if (current.Equals(EndPosition))
                 {
                     return new RGSearchResult
                     {
                         Path = GeneratePath(visitedMap, current),
-                        Visited = new List<RGGrid.Point>(visitedMap.Keys)
+                        Visited = new List<Point>(visitedMap.Keys)
                     };
                 }
 
-                foreach (RGGrid.Point neighbor in grid.GetAdjacentCells(current))
+                foreach (Point neighbor in grid.GetAdjacentCells(current))
                 {
                     float newCost = distanceMap[current] + grid.GetCostOfEnteringCell(neighbor);
                     if (!distanceMap.ContainsKey(neighbor) || newCost < distanceMap[neighbor])
@@ -600,17 +600,17 @@ namespace RGGraphCore
             return new RGSearchResult();
         }
 
-        public static RGSearchResult AStarBiDirectional(RGGrid grid, RGGrid.Point StartPosition, RGGrid.Point EndPosition)
+        public static RGSearchResult AStarBiDirectional(RGGrid grid, Point StartPosition, Point EndPosition)
         {
-            Dictionary<RGGrid.Point, bool> openedBy = new Dictionary<RGGrid.Point, bool>();
+            Dictionary<Point, bool> openedBy = new Dictionary<Point, bool>();
 
-            RGPriorityQueue<RGGrid.Point> startQueue = new RGPriorityQueue<RGGrid.Point>();
-            RGPriorityQueue<RGGrid.Point> endQueue = new RGPriorityQueue<RGGrid.Point>();
+            RGPriorityQueue<Point> startQueue = new RGPriorityQueue<Point>();
+            RGPriorityQueue<Point> endQueue = new RGPriorityQueue<Point>();
 
-            Dictionary<RGGrid.Point, float> startDistanceMap = new Dictionary<RGGrid.Point, float>();
-            Dictionary<RGGrid.Point, RGGrid.Point> startVisitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
-            Dictionary<RGGrid.Point, float> endDistanceMap = new Dictionary<RGGrid.Point, float>();
-            Dictionary<RGGrid.Point, RGGrid.Point> endVisitedMap = new Dictionary<RGGrid.Point, RGGrid.Point>();
+            Dictionary<Point, float> startDistanceMap = new Dictionary<Point, float>();
+            Dictionary<Point, Point> startVisitedMap = new Dictionary<Point, Point>();
+            Dictionary<Point, float> endDistanceMap = new Dictionary<Point, float>();
+            Dictionary<Point, Point> endVisitedMap = new Dictionary<Point, Point>();
 
             startQueue.Enqueue(StartPosition, 0);
             startDistanceMap[StartPosition] = 0;
@@ -625,17 +625,17 @@ namespace RGGraphCore
             // Even if onequeue is empty, then it means there is no path
             while (!startQueue.Empty && !endQueue.Empty)
             {
-                RGGrid.Point current = startQueue.Dequeue();
+                Point current = startQueue.Dequeue();
                 if (openedBy.ContainsKey(current) && openedBy[current] == false)
                 {
                     // If it enters here, it means the two lookups have met.
-                    List<RGGrid.Point> startPath = GeneratePath(startVisitedMap, current);
-                    List<RGGrid.Point> endPath = GeneratePath(endVisitedMap, current);
+                    List<Point> startPath = GeneratePath(startVisitedMap, current);
+                    List<Point> endPath = GeneratePath(endVisitedMap, current);
 
-                    List<RGGrid.Point> allPath = new List<RGGrid.Point>(startPath);
+                    List<Point> allPath = new List<Point>(startPath);
                     allPath.AddRange(endPath);
 
-                    List<RGGrid.Point> allVisited = new List<RGGrid.Point>(startVisitedMap.Keys);
+                    List<Point> allVisited = new List<Point>(startVisitedMap.Keys);
                     allVisited.AddRange(endVisitedMap.Keys);
 
                     return new RGSearchResult
@@ -644,7 +644,7 @@ namespace RGGraphCore
                         Visited = allVisited
                     };
                 }
-                foreach (RGGrid.Point neighbour in grid.GetAdjacentCells(current))
+                foreach (Point neighbour in grid.GetAdjacentCells(current))
                 {
                     float newCost = startDistanceMap[current] + grid.GetCostOfEnteringCell(neighbour);
                     if (!startDistanceMap.ContainsKey(neighbour) || newCost < startDistanceMap[neighbour])
@@ -664,13 +664,13 @@ namespace RGGraphCore
                 {
                     // Found goal or the frontier from the start queue
                     // Return solution
-                    List<RGGrid.Point> startPath = GeneratePath(startVisitedMap, current);
-                    List<RGGrid.Point> endPath = GeneratePath(endVisitedMap, current);
+                    List<Point> startPath = GeneratePath(startVisitedMap, current);
+                    List<Point> endPath = GeneratePath(endVisitedMap, current);
 
-                    List<RGGrid.Point> allPath = new List<RGGrid.Point>(startPath);
+                    List<Point> allPath = new List<Point>(startPath);
                     allPath.AddRange(endPath);
 
-                    List<RGGrid.Point> allVisited = new List<RGGrid.Point>(startVisitedMap.Keys);
+                    List<Point> allVisited = new List<Point>(startVisitedMap.Keys);
                     allVisited.AddRange(endVisitedMap.Keys);
 
                     return new RGSearchResult
@@ -679,7 +679,7 @@ namespace RGGraphCore
                         Visited = allVisited
                     };
                 }
-                foreach (RGGrid.Point neighbour in grid.GetAdjacentCells(current))
+                foreach (Point neighbour in grid.GetAdjacentCells(current))
                 {
                     float newCost = endDistanceMap[current] + grid.GetCostOfEnteringCell(neighbour);
                     if (!endDistanceMap.ContainsKey(neighbour) || newCost < endDistanceMap[neighbour])

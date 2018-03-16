@@ -122,7 +122,7 @@ public class RGGridManager : MonoBehaviour {
         {
             for (int j = 0; j < _grid.Height; j++)
             {
-                RGGrid.Point pos = new RGGrid.Point(i, j);
+                Point pos = new Point(i, j);
                 _cells.FirstOrDefault(c => c.GetPosition().Equals(pos)).SetState(RGCell.CellState.Normal, _grid.GetCostOfEnteringCell(pos));
             }
         }
@@ -228,10 +228,10 @@ public class RGGridManager : MonoBehaviour {
         sb.AppendLine();
     }
 
-    private void ShowVisited(List<RGGrid.Point> visited)
+    private void ShowVisited(List<Point> visited)
     {
         _VisitedText.text = "Visited: " + visited.Count;
-        foreach (RGGrid.Point point in visited)
+        foreach (Point point in visited)
         {
             RGCell cell = _cells.FirstOrDefault(c => c.GetPosition().Equals(point));
             if (cell.State == RGCell.CellState.Normal)
@@ -241,7 +241,7 @@ public class RGGridManager : MonoBehaviour {
         }
     }
 
-    private IEnumerator ShowPath(List<RGGrid.Point> path)
+    private IEnumerator ShowPath(List<Point> path)
     {
         print("Path");
         path.Reverse();
@@ -250,7 +250,7 @@ public class RGGridManager : MonoBehaviour {
 
         for (int i = 1; i < path.Count - 1; i++)
         {
-            RGGrid.Point step = path[i];
+            Point step = path[i];
             RGCell cell = _cells.FirstOrDefault(c => c.GetPosition().Equals(step));
 
             if (cell.State == RGCell.CellState.End || cell.State == RGCell.CellState.Start)
@@ -297,7 +297,7 @@ public class RGGridManager : MonoBehaviour {
         {
             for (int j = 0; j < _grid.Height; j++)
             {
-                RGGrid.Point pos = new RGGrid.Point(i, j);
+                Point pos = new Point(i, j);
                 RGCell cell = _cells.FirstOrDefault(c => c.GetPosition().Equals(pos));
 
                 if (cell.State == RGCell.CellState.End || cell.State == RGCell.CellState.Start)
