@@ -66,8 +66,11 @@ public class GameManager : MonoBehaviour {
 
     bool _isSpawning;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private GameObject GameApplePrefab;
+
+    // Use this for initialization
+    void Start () {
         TextAsset levelData = Resources.Load(_LevelName) as TextAsset;
         _grid = Grid.LoadPacmanLevel(levelData.text);
         InstantiateGrid(_grid);
@@ -163,6 +166,7 @@ public class GameManager : MonoBehaviour {
             ghost.SetGrid(_grid);
             ghost.SetPlayer(_player);
             ghost.SetAIState(_AIState);
+            ghost.SetApplePrefab(GameApplePrefab);
             _ghosts.Add(ghost);
             ghost.Died += Ghost_Died;
 

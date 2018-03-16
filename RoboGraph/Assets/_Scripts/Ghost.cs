@@ -47,11 +47,19 @@ public class Ghost : MonoBehaviour {
 
     private GhostAI _ai;
 
+    [SerializeField]
+    private GameObject GameApplePrefab;
+
     // Use this for initialization
     void Start () {
         
         SetState(GhostState.Normal);
 	}
+
+    public void SetApplePrefab(GameObject ApplePrefab)
+    {
+        GameApplePrefab = ApplePrefab;
+    }
 
     public void SetState(GhostState state)
     {
@@ -133,6 +141,8 @@ public class Ghost : MonoBehaviour {
             _moveGoal = _grid.GridToWorldPosition(goalPoint);
         }
 
+        GameObject gameApple = Instantiate(GameApplePrefab) as GameObject;
+        gameApple.transform.position = _moveGoal;
         transform.position = Vector2.MoveTowards(transform.position, _moveGoal, _speed * Time.deltaTime);
     }
 
