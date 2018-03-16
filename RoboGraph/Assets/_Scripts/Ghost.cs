@@ -56,7 +56,7 @@ public class Ghost : MonoBehaviour {
     void Start () {
         
         SetState(GhostState.Normal);
-        SpawnApplePosition();
+        //SpawnApplePosition();
 
     }
 
@@ -67,11 +67,7 @@ public class Ghost : MonoBehaviour {
 
     public void UpdateApplePosition()
     {
-        Point newPoint = new Point(0, 0);
-        newPoint.X = UnityEngine.Random.Range(0, _grid.Width);
-        newPoint.Y = UnityEngine.Random.Range(0, _grid.Height);
-        gameApple.transform.position = _grid.GridToWorldPosition(newPoint);
-        _player.transform.position = gameApple.transform.position;
+        
     }
 
     public void SetApplePrefab(GameObject ApplePrefab)
@@ -155,7 +151,6 @@ public class Ghost : MonoBehaviour {
         if (_moveGoal == null || EpsilonClose(transform.position, _moveGoal))
         {
             var point = _grid.GetClosestPoint(transform.position);
-            UpdateApplePosition();
             Point goalPoint = _ai.GetNextMoveGoal(point, _grid.GetClosestPoint(_player.transform.position));
             _moveGoal = _grid.GridToWorldPosition(goalPoint);
         }
@@ -210,7 +205,7 @@ public class Ghost : MonoBehaviour {
 
         private void GetNewPath(Point ghostPosition, Point playerPosition)
         {
-
+          
             List<Point> path = null;
 
             switch (_AIState)

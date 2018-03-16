@@ -217,41 +217,46 @@ public class Player : MonoBehaviour
         }
         HandleInput();
 
-        UpdateMoveGoal(_currentDirection);
+       // UpdateMoveGoal(_currentDirection);
 
-        transform.position = Vector2.MoveTowards(transform.position, _moveGoal, _MoveSpeed * Time.deltaTime);
+       // transform.position = Vector2.MoveTowards(transform.position, _moveGoal, _MoveSpeed * Time.deltaTime);
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var ghost = collision.gameObject.GetComponent<Ghost>();
-        if (ghost)
-        {            
-            if (ghost.State == Ghost.GhostState.Normal)
-            {
-                OnDied(EventArgs.Empty);
-                return;
-            }
-            if (ghost.State == Ghost.GhostState.Scared)
-            {
-                ghost.EatGhost();
-                return;
-            }
-        }
-        
-        Pickupable p = collision.gameObject.GetComponent<Pickupable>();
-        if (p)
-        {           
-            Destroy(p.gameObject);
-            if (p is Coin)
-            {
-                OnCoinPickedUp(EventArgs.Empty);
-            }
-            else if (p is Powerup)
-            {
-                OnPowerupPickedUp(EventArgs.Empty);
-            }
-        }
+        Point newPoint = new Point(0, 0);
+        newPoint.X = UnityEngine.Random.Range(0, _grid.Width);
+        newPoint.Y = UnityEngine.Random.Range(0, _grid.Height);
+        this.gameObject.transform.position = _grid.GridToWorldPosition(newPoint);
+
+        //var ghost = collision.gameObject.GetComponent<Ghost>();
+        //if (ghost)
+        //{            
+        //    if (ghost.State == Ghost.GhostState.Normal)
+        //    {
+        //        OnDied(EventArgs.Empty);
+        //        return;
+        //    }
+        //    if (ghost.State == Ghost.GhostState.Scared)
+        //    {
+        //        ghost.EatGhost();
+        //        return;
+        //    }
+        //}
+
+        //Pickupable p = collision.gameObject.GetComponent<Pickupable>();
+        //if (p)
+        //{           
+        //    Destroy(p.gameObject);
+        //    if (p is Coin)
+        //    {
+        //        OnCoinPickedUp(EventArgs.Empty);
+        //    }
+        //    else if (p is Powerup)
+        //    {
+        //        OnPowerupPickedUp(EventArgs.Empty);
+        //    }
+        //}
     }
 
     protected virtual void OnCoinPickedUp(EventArgs e)
