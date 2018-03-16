@@ -6,38 +6,29 @@ using UnityEngine;
 
 public class RGCell : MonoBehaviour
 {
-
-    public enum CellState { Normal, Start, End, Highlight, Impassable, Visited }
-
     public delegate void ClickedEventHandler(object sender, EventArgs e);
 
     public event ClickedEventHandler Clicked;
 
-    public Color _highlightColor = new Color(243f / 255, 112f / 255, 33f / 255);
-    public Color _impassableColor = new Color(51f / 255, 51f / 255, 51f / 255);
-    public Color _visitedColor = new Color(66f / 255, 134f / 255, 244f / 255);
-    public Color _normalColor = Color.white;
+    private Color _highlightColor = new Color(243f / 255, 112f / 255, 33f / 255);
+    private Color _impassableColor = new Color(51f / 255, 51f / 255, 51f / 255);
+    private Color _visitedColor = new Color(66f / 255, 134f / 255, 244f / 255);
+    private Color _normalColor = Color.white;
 
-    private CellState _state;
-    public CellState State { get { return _state; } }
+    private RGGrid.CellType _state;
+    public RGGrid.CellType State { get { return _state; } }
 
     [SerializeField]
     private SpriteRenderer _BgSprite;
 
-    [SerializeField]
-    private SpriteRenderer _OutlineSprite;
-
-    [SerializeField]
-    private TextMesh _Text;
-
-    private BoxCollider2D _collider;
+    // private BoxCollider2D _collider;
 
     private int _x, _y;
 
     // Use this for initialization
     void Start()
     {
-        _collider = GetComponent<BoxCollider2D>();
+        // _collider = GetComponent<BoxCollider2D>();
         //SetState(CellState.Normal);
     }
 
@@ -60,32 +51,17 @@ public class RGCell : MonoBehaviour
         return new Point(_x, _y);
     }
 
-    public void SetState(CellState state, float weight = 0)
+    public void SetState(RGGrid.CellType state, float weight = 0)
     {
         _state = state;
-        _Text.text = "";
-        switch (_state)
+
+        if (RGGrid.IsCellPassable(state))
         {
-            case CellState.Normal:
-                _BgSprite.color = Color.Lerp(_normalColor, _impassableColor, (weight - 1) / 9f);
-                break;
-            case CellState.Highlight:
-                _BgSprite.color = _highlightColor;
-                break;
-            case CellState.Impassable:
-                _BgSprite.color = _impassableColor;
-                break;
-            case CellState.Start:
-                _BgSprite.color = _highlightColor;
-                _Text.text = "Start";
-                break;
-            case CellState.End:
-                _BgSprite.color = _highlightColor;
-                _Text.text = "End";
-                break;
-            case CellState.Visited:
-                _BgSprite.color = _visitedColor;
-                break;
+            _BgSprite.color = _normalColor;
+        }
+        else
+        {
+            _BgSprite.color = _impassableColor;
         }
     }
 
@@ -93,16 +69,16 @@ public class RGCell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var hitCollider = _collider.OverlapPoint(mousePosition);
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //    var hitCollider = _collider.OverlapPoint(mousePosition);
 
-            if (hitCollider)
-            {
+        //    if (hitCollider)
+        //    {
 
-                OnClicked(EventArgs.Empty);
-            }
-        }
+        //        OnClicked(EventArgs.Empty);
+        //    }
+        //}
     }
 }

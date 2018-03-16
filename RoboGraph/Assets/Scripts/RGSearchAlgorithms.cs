@@ -213,6 +213,39 @@ namespace RGGraphCore
             }
         }
 
+        public static RGSearchResult DijkstraGeneral(RGGrid grid, Point startPos)
+        {
+            RGPriorityQueue<Point> queue = new RGPriorityQueue<Point>();
+            Dictionary<Point, float> distanceMap = new Dictionary<Point, float>();
+            Dictionary<Point, Point> visitedMap = new Dictionary<Point, Point>();
+
+            queue.Enqueue(startPos, 0);
+
+            distanceMap.Add(startPos, 0);
+            visitedMap.Add(startPos, null);
+
+            while (!queue.Empty)
+            {
+                Point current = queue.Dequeue();
+
+                foreach (Point adj in grid.GetAdjacentCells(current))
+                {
+                    float newDist = distanceMap[current] + grid.GetCostOfEnteringCell(adj);
+                    if (!distanceMap.ContainsKey(adj) || newDist < distanceMap[adj])
+                    {
+                        distanceMap[adj] = newDist;
+                        visitedMap[adj] = current;
+                        queue.Enqueue(adj, newDist);
+                    }
+                }
+            }
+            return new RGSearchResult()
+            {
+                VisitedMap = visitedMap,
+                DistanceMap = distanceMap
+            };
+        }
+
         public static List<RGVertex<T>> DijkstraWithGoal<T>(RGGraph<T> graph, RGVertex<T> source, RGVertex<T> goal)
         {
             if(source.Equals(goal))
@@ -422,6 +455,8 @@ namespace RGGraphCore
         {
             public List<Point> Path { get; set; }
             public List<Point> Visited { get; set; }
+            public Dictionary<Point, Point> VisitedMap { get; set; }
+            public Dictionary<Point, float> DistanceMap { get; set; }
         }
 
         // This is used to implement the best first search.
@@ -557,6 +592,45 @@ namespace RGGraphCore
                 }
             }
 
+            return new RGSearchResult();
+        }
+
+        public static RGSearchResult AStarSearchWithCost(RGGrid grid, Point startPos, Point endPos, Dictionary<Point, float> costMap)
+        {
+            RGPriorityQueue<Point> queue = new RGPriorityQueue<Point>();
+            Dictionary<Point, float> costSoFar = new Dictionary<Point, float>();
+            Dictionary<Point, Point> cameFrom = new Dictionary<Point, Point>();
+
+            queue.Enqueue(startPos, 0);
+            costSoFar[startPos] = 0;
+            cameFrom[startPos] = null;
+
+            while (!queue.Empty)
+            {
+                Point current = queue.Dequeue();
+                if (current.Equals(endPos))
+                {
+                    return new RGSearchResult
+                    {
+                        Path = GeneratePath(cameFrom, current),
+                        Visited = new List<Point>(cameFrom.Keys)
+                    };
+                }
+                foreach (Point neighbour in grid.GetAdjacentCells(current))
+                {
+                    float cost = costMap.ContainsKey(neighbour) ? costMap[neighbour] : 1;
+                    float newCost = costSoFar[current] + cost;
+                    if (!costSoFar.ContainsKey(neighbour) || newCost < costSoFar[neighbour])
+                    {
+                        costSoFar[neighbour] = newCost;
+
+                        float priority = newCost + Heuristic(endPos, neighbour);
+                        queue.Enqueue(neighbour, priority);
+
+                        cameFrom[neighbour] = current;
+                    }
+                }
+            }
             return new RGSearchResult();
         }
 

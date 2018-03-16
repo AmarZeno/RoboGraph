@@ -44,7 +44,7 @@ namespace RGGame
             switch(AIState)
             {
                 case SnakeAIState.Random:
-                    path = RGSearchAlgorithms.BestFirstSearch(grid, ghostPosition, grid.GetRandomOpenPoint()).Path;
+                   // path = RGSearchAlgorithms.BestFirstSearch(grid, ghostPosition, grid.GetRandomOpenPoint()).Path;
                     break;
             }
 
