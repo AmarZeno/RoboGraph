@@ -163,6 +163,7 @@ public class GameManager : MonoBehaviour {
         {
             Ghost ghost = Instantiate(_GhostPrefab) as Ghost;
             ghost.transform.position = _grid.GridToWorldPosition(_grid.GhostBeginPosition);
+            ghost.transform.localScale = new Vector2(0.2f, 0.2f);
             ghost.SetGrid(_grid);
             ghost.SetPlayer(_player);
             ghost.SetAIState(_AIState);
