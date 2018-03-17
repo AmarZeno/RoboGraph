@@ -245,7 +245,8 @@ public class Player : MonoBehaviour
             newPoint.X = UnityEngine.Random.Range(0, _grid.Width);
             newPoint.Y = UnityEngine.Random.Range(0, _grid.Height);
             this.gameObject.transform.position = _grid.GridToWorldPosition(newPoint);
-            collision.gameObject.GetComponent<TrailRenderer>().time += 0.3f;
+            if(collision.gameObject.GetComponent<TrailRenderer>() != null)
+             collision.gameObject.GetComponent<TrailRenderer>().time += 0.3f;
         }
 
         OnScoreHandler(EventArgs.Empty);
