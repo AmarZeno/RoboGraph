@@ -52,6 +52,8 @@ public class Ghost : MonoBehaviour {
 
     GameObject gameApple;
 
+
+
     // Use this for initialization
     void Start () {
         

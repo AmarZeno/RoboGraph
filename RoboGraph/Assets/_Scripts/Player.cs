@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     public event DiedEventHandler Died;
 
-    
+    public event PickedUpEventHandler ScoreHandler;
 
     [SerializeField]
     private float _MoveSpeed = 1f;
@@ -79,6 +79,14 @@ public class Player : MonoBehaviour
         if (Died != null)
         {
             Died(this, e);
+        }
+    }
+
+    protected virtual void OnScoreHandler(EventArgs e)
+    {
+        if(ScoreHandler != null)
+        {
+            ScoreHandler(this, e);
         }
     }
 
@@ -239,7 +247,7 @@ public class Player : MonoBehaviour
             this.gameObject.transform.position = _grid.GridToWorldPosition(newPoint);
         }
 
-
+        OnScoreHandler(EventArgs.Empty);
 
         //var ghost = collision.gameObject.GetComponent<Ghost>();
         //if (ghost)

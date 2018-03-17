@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private GameObject GameApplePrefab;
 
+
+
     // Use this for initialization
     void Start () {
         TextAsset levelData = Resources.Load(_LevelName) as TextAsset;
@@ -131,7 +133,7 @@ public class GameManager : MonoBehaviour {
                     _player.CoinPickedUp += Player_CoinPickedUp;
                     _player.PowerupPickedUp += Player_PowerupPickedUp;
                     _player.Died += Player_Died;
-
+                    _player.ScoreHandler += UpdateUIScore;
                     _player.CanMove = !_DisablePlayer;
                 } 
             }
@@ -219,6 +221,11 @@ public class GameManager : MonoBehaviour {
                 }
             }
         });
+    }
+
+    private void UpdateUIScore(object sender, System.EventArgs e)
+    {
+        UpdateScore(1);
     }
 
     private void Player_CoinPickedUp(object sender, System.EventArgs e)
