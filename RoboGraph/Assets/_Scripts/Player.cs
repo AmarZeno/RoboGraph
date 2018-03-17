@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
     public bool CanMove { get; set; }
 
-   
+    private bool bIsResettingPosition = false;
 
     private Vector2 ConvertDirection(MoveDirection direction)
     {
@@ -215,19 +215,31 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        HandleInput();
+      //  HandleInput();
 
        // UpdateMoveGoal(_currentDirection);
 
        // transform.position = Vector2.MoveTowards(transform.position, _moveGoal, _MoveSpeed * Time.deltaTime);
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        bIsResettingPosition = false;
+    }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Point newPoint = new Point(0, 0);
-        newPoint.X = UnityEngine.Random.Range(0, _grid.Width);
-        newPoint.Y = UnityEngine.Random.Range(0, _grid.Height);
-        this.gameObject.transform.position = _grid.GridToWorldPosition(newPoint);
+        //this.gameObject.transform.position = new Vector3(-1000, -1000);
+        if(!bIsResettingPosition)
+        {
+            bIsResettingPosition = true;
+            Point newPoint = new Point(0, 0);
+            newPoint.X = UnityEngine.Random.Range(0, _grid.Width);
+            newPoint.Y = UnityEngine.Random.Range(0, _grid.Height);
+            this.gameObject.transform.position = _grid.GridToWorldPosition(newPoint);
+        }
+
+
 
         //var ghost = collision.gameObject.GetComponent<Ghost>();
         //if (ghost)
